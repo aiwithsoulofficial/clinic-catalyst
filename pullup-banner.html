@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clinic Catalyst - Pull Up Banner</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal: #00B4A0;
+  --teal-bright: #00D4BC;
+  --teal-dark: #007A6E;
+  --hero-dark: #0A2A28;
+  --hero-mid: #0D3D38;
+  --dark-section: #0E2D2A;
+  --white: #FFFFFF;
+  --off-white: #F4F4F4;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #1a1a1a;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.banner {
+  width: 850px;
+  height: 2000px;
+  background: linear-gradient(
+    180deg,
+    #0A2A28 0%,
+    #0D3D38 12%,
+    #0A2A28 25%,
+    #0E2D2A 40%,
+    #0A2A28 55%,
+    #0D3D38 70%,
+    #0A2A28 85%,
+    #0E2D2A 95%,
+    #0A2A28 100%
+  );
+  position: relative;
+  overflow: hidden;
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Dot grid overlay */
+.banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.1;
+  background-image: radial-gradient(circle, var(--teal) 1.5px, transparent 1.5px);
+  background-size: 40px 40px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Glow - top left */
+.glow-top {
+  position: absolute;
+  top: -180px;
+  left: -180px;
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 212, 188, 0.15) 0%, rgba(0, 180, 160, 0.06) 40%, transparent 70%);
+  z-index: 1;
+}
+
+/* Glow - mid right */
+.glow-mid {
+  position: absolute;
+  top: 35%;
+  right: -200px;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 212, 188, 0.1) 0%, rgba(0, 180, 160, 0.04) 40%, transparent 70%);
+  z-index: 1;
+}
+
+/* Glow - bottom */
+.glow-bottom {
+  position: absolute;
+  bottom: -120px;
+  right: -120px;
+  width: 550px;
+  height: 550px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 212, 188, 0.12) 0%, rgba(0, 180, 160, 0.05) 40%, transparent 70%);
+  z-index: 1;
+}
+
+/* Glow - left mid-low */
+.glow-left {
+  position: absolute;
+  top: 60%;
+  left: -200px;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 212, 188, 0.08) 0%, transparent 65%);
+  z-index: 1;
+}
+
+/* Subtle horizontal gradient sweep across hero area */
+.gradient-sweep {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  right: 0;
+  height: 500px;
+  background: linear-gradient(135deg, rgba(0, 212, 188, 0.04) 0%, transparent 40%, rgba(0, 180, 160, 0.03) 70%, transparent 100%);
+  z-index: 1;
+}
+
+/* Content zones */
+.zone {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 60px;
+}
+
+/* === LOGO === */
+.zone-logo {
+  padding-top: 70px;
+  padding-bottom: 30px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+
+.logo-icon {
+  width: 58px;
+  height: 58px;
+  border: 3px solid var(--teal-bright);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.logo-icon svg { width: 26px; height: 26px; }
+
+.logo-text {
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--white);
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.logo-text span { color: var(--teal-bright); }
+
+/* === TAGLINE === */
+.zone-tagline {
+  padding-top: 40px;
+  padding-bottom: 30px;
+}
+
+.tagline-line {
+  font-size: 4rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--white);
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+}
+
+.tagline-line span { color: var(--teal-bright); }
+
+.tagline-sub {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.7;
+  margin-top: 20px;
+  max-width: 600px;
+}
+
+/* === DIVIDER (gradient) === */
+.divider {
+  width: 160px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--teal-bright), transparent);
+  position: relative;
+  z-index: 2;
+  margin: 0 auto;
+}
+
+/* === HERO STAT === */
+.zone-stat {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.stat-value {
+  font-size: 7.5rem;
+  font-weight: 900;
+  background: linear-gradient(180deg, #00ffec 0%, #00D4BC 40%, #00B4A0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.stat-label {
+  font-size: 1.15rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 8px;
+}
+
+/* === FEATURES === */
+.zone-features {
+  padding-top: 35px;
+  padding-bottom: 35px;
+  width: 100%;
+}
+
+.features-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--white);
+  letter-spacing: 0.06em;
+  margin-bottom: 30px;
+}
+
+.features-title span { color: var(--teal-bright); }
+
+.feature-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  text-align: left;
+}
+
+.feature-arrow {
+  color: var(--teal-bright);
+  font-size: 1.5rem;
+  font-weight: 900;
+  flex-shrink: 0;
+  width: 20px;
+}
+
+.feature-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.feature-name {
+  font-size: 1.05rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--white);
+  letter-spacing: 0.06em;
+}
+
+.feature-desc {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.4);
+  line-height: 1.4;
+}
+
+/* Lock-in note */
+.no-lockin {
+  margin-top: 30px;
+  padding: 12px 28px;
+  border: 2px solid rgba(0, 212, 188, 0.3);
+  display: inline-block;
+}
+
+.no-lockin span {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--teal-bright);
+}
+
+/* === QR + CTA === */
+.zone-qr {
+  padding-top: 35px;
+  padding-bottom: 40px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.qr-label {
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--teal-bright);
+  margin-bottom: 22px;
+}
+
+.qr-box {
+  width: 200px;
+  height: 200px;
+  background: var(--white);
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qr-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.qr-cta {
+  margin-top: 22px;
+  padding: 14px 36px;
+  background: linear-gradient(135deg, #00D4BC 0%, #00B4A0 100%);
+  color: var(--hero-dark);
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.qr-url {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.3);
+  margin-top: 14px;
+  letter-spacing: 0.04em;
+}
+
+/* === FOOTER === */
+.zone-footer {
+  width: 100%;
+  padding: 18px 0;
+  background: linear-gradient(90deg, var(--teal-dark), var(--teal-bright), var(--teal-dark));
+  position: relative;
+  z-index: 2;
+}
+
+.footer-text {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--hero-dark);
+  text-align: center;
+}
+</style>
+</head>
+<body>
+
+<div class="banner">
+  <!-- Ambient glows -->
+  <div class="glow-top"></div>
+  <div class="glow-mid"></div>
+  <div class="glow-left"></div>
+  <div class="glow-bottom"></div>
+  <div class="gradient-sweep"></div>
+
+  <!-- LOGO -->
+  <div class="zone zone-logo">
+    <div class="logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 14 14" fill="none">
+          <path d="M7 1L13 7L7 13" stroke="#00D4BC" stroke-width="2" stroke-linecap="round"/>
+          <path d="M1 7H12" stroke="#00D4BC" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="logo-text">CLINIC<span>CATALYST</span></div>
+    </div>
+  </div>
+
+  <!-- TAGLINE -->
+  <div class="zone zone-tagline">
+    <div class="tagline-line">WE DON'T JUST</div>
+    <div class="tagline-line">RUN ADS.</div>
+    <div class="tagline-line" style="margin-top: 10px;">WE FILL <span>CLINICS.</span></div>
+    <div class="tagline-sub">Done-for-you patient acquisition for any clinic that books appointments.</div>
+  </div>
+
+  <!-- DIVIDER -->
+  <div class="divider"></div>
+
+  <!-- HERO STAT -->
+  <div class="zone zone-stat">
+    <div class="stat-value">&lt;60s</div>
+    <div class="stat-label">Speed to Call Every Lead</div>
+  </div>
+
+  <!-- DIVIDER -->
+  <div class="divider"></div>
+
+  <!-- FEATURES -->
+  <div class="zone zone-features">
+    <div class="features-title">YOUR COMPLETE <span>GROWTH ENGINE</span></div>
+    <ul class="feature-list">
+      <li class="feature-item">
+        <span class="feature-arrow">&rsaquo;</span>
+        <div class="feature-text">
+          <div class="feature-name">AI Instant Calling</div>
+          <div class="feature-desc">Every lead called back in under 60 seconds</div>
+        </div>
+      </li>
+      <li class="feature-item">
+        <span class="feature-arrow">&rsaquo;</span>
+        <div class="feature-text">
+          <div class="feature-name">Done-For-You Ad Campaigns</div>
+          <div class="feature-desc">Facebook, Instagram and Google Ads fully managed</div>
+        </div>
+      </li>
+      <li class="feature-item">
+        <span class="feature-arrow">&rsaquo;</span>
+        <div class="feature-text">
+          <div class="feature-name">Automated DM & Chat Replies</div>
+          <div class="feature-desc">Every message answered instantly across all channels</div>
+        </div>
+      </li>
+      <li class="feature-item">
+        <span class="feature-arrow">&rsaquo;</span>
+        <div class="feature-text">
+          <div class="feature-name">GEO & Local Search</div>
+          <div class="feature-desc">Found by patients searching near your clinic</div>
+        </div>
+      </li>
+      <li class="feature-item">
+        <span class="feature-arrow">&rsaquo;</span>
+        <div class="feature-text">
+          <div class="feature-name">CRM & Calendar Booking</div>
+          <div class="feature-desc">Appointments booked directly into your schedule</div>
+        </div>
+      </li>
+      <li class="feature-item">
+        <span class="feature-arrow">&rsaquo;</span>
+        <div class="feature-text">
+          <div class="feature-name">SMS & Email Nurture</div>
+          <div class="feature-desc">Automated sequences that convert leads to patients</div>
+        </div>
+      </li>
+      <li class="feature-item">
+        <span class="feature-arrow">&rsaquo;</span>
+        <div class="feature-text">
+          <div class="feature-name">Website Chat Widget</div>
+          <div class="feature-desc">AI concierge on your site qualifying visitors 24/7</div>
+        </div>
+      </li>
+      <li class="feature-item">
+        <span class="feature-arrow">&rsaquo;</span>
+        <div class="feature-text">
+          <div class="feature-name">Monthly Performance Reports</div>
+          <div class="feature-desc">Full visibility on your ROI and pipeline</div>
+        </div>
+      </li>
+    </ul>
+    <div class="no-lockin">
+      <span>Month-to-Month. No Lock-In.</span>
+    </div>
+  </div>
+
+  <!-- DIVIDER -->
+  <div class="divider"></div>
+
+  <!-- QR CODE -->
+  <div class="zone zone-qr">
+    <div class="qr-label">Find Your Revenue Leak</div>
+    <div class="qr-box">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA6wAAAOsCAIAAADBWawTAAAYUklEQVR4nO3YTW7DSnpAUTrQjCsRtP+lCFoJx8wgowRovIar48/le85cqGL9UBf8uu/7AACAkv+angAAAPw0EQwAQI4IBgAgRwQDAJAjggEAyBHBAADkiGAAAHJEMAAAOSIYAIAcEQwAQI4IBgAgRwQDAJAjggEAyBHBAADkiGAAAHJEMAAAOSIYAIAcEQwAQI4IBgAgRwQDAJAjggEAyBHBAADkiGAAAHJEMAAAOSIYAIAcEQwAQI4IBgAgRwQDAJAjggEAyBHBAADkiGAAAHJEMAAAOSIYAIAcEQwAQI4IBgAgRwQDAJAjggEAyBHBAADkiGAAAHJEMAAAOSIYAIAcEQwAQI4IBgAgRwQDAJAjggEAyBHBAADkiGAAAHJEMAAAOSIYAIAcEQwAQI4IBgAgRwQDAJAjggEAyBHBAADkiGAAAHJEMAAAOSIYAIAcEQwAQI4IBgAg53Fs6Hw9p6fAP7jen5H9XRm3dibtkXX+V2rneUe1PdrxeWuuDe+gL8EAAOSIYAAAckQwAAA5IhgAgBwRDABAjggGACBHBAMAkCOCAQDIEcEAAOSIYAAAckQwAAA5IhgAgBwRDABAjggGACBHBAMAkCOCAQDIEcEAAOSIYAAAckQwAAA5jyPmen+mp7CN8/U8SnNeORsrv52a89S4O57J2jpPPW/tbEzZcc4ras9b+99f4UswAAA5IhgAgBwRDABAjggGACBHBAMAkCOCAQDIEcEAAOSIYAAAckQwAAA5IhgAgBwRDABAjggGACBHBAMAkCOCAQDIEcEAAOSIYAAAckQwAAA5IhgAgBwRDABAzmN6Ajs5X89jN9f7c5SsPO+O+1s7G1NznjobK+PW7sKO53nF1P7W1tld+Nt8CQYAIEcEAwCQI4IBAMgRwQAA5IhgAAByRDAAADkiGACAHBEMAECOCAYAIEcEAwCQI4IBAMgRwQAA5IhgAAByRDAAADkiGACAHBEMAECOCAYAIEcEAwCQI4IBAMh5TE8A/q/r/bEoP+B8PVP7u/K8O855irX6mbVa8TzDb+NLMAAAOSIYAIAcEQwAQI4IBgAgRwQDAJAjggEAyBHBAADkiGAAAHJEMAAAOSIYAIAcEQwAQI4IBgAgRwQDAJAjggEAyBHBAADkiGAAAHJEMAAAOSIYAIAcEQwAQM5jegLwn3S+nt/+7fX+jIxbe96ptVoxNeeVPZpSW6sdn3fqvQG/jS/BAADkiGAAAHJEMAAAOSIYAIAcEQwAQI4IBgAgRwQDAJAjggEAyBHBAADkiGAAAHJEMAAAOSIYAIAcEQwAQI4IBgAgRwQDAJAjggEAyBHBAADkiGAAAHJEMAAAOY/pCezken+mp5Bwvp6pcfn9d3DlbKzMeWrcHdd5x/s7NWf/ZdaK/+FLMAAAOSIYAIAcEQwAQI4IBgAgRwQDAJAjggEAyBHBAADkiGAAAHJEMAAAOSIYAIAcEQwAQI4IBgAgRwQDAJAjggEAyBHBAADkiGAAAHJEMAAAOSIYAIAcEQwAQM7jiDlfz+kp8P/oen9GzoZxf2adV9jff5/z/LfP1Yqp513hf59/xZdgAAByRDAAADkiGACAHBEMAECOCAYAIEcEAwCQI4IBAMgRwQAA5IhgAAByRDAAADkiGACAHBEMAECOCAYAIEcEAwCQI4IBAMgRwQAA5IhgAAByRDAAADkiGACAnMexoev9mZ4Cf1DtXE09747jnq/nf3QuPzGu8/wz6zzF/sI6X4IBAMgRwQAA5IhgAAByRDAAADkiGACAHBEMAECOCAYAIEcEAwCQI4IBAMgRwQAA5IhgAAByRDAAADkiGACAHBEMAECOCAYAIEcEAwCQI4IBAMgRwQAA5IhgAAByvu77np7DNs7X89jN9f6MPO/UuCtW5jxlxzO5YsdzVXve2j3a8R07pXYHV1irn+FLMAAAOSIYAIAcEQwAQI4IBgAgRwQDAJAjggEAyBHBAADkiGAAAHJEMAAAOSIYAIAcEQwAQI4IBgAgRwQDAJAjggEAyBHBAADkiGAAAHJEMAAAOSIYAIAcEQwAQM7Xfd/Tc0g4X8+Rca/3J/W8O67VFHsEzXtUs/JuX9nfqXGnXBv+h/oSDABAjggGACBHBAMAkCOCAQDIEcEAAOSIYAAAckQwAAA5IhgAgBwRDABAjggGACBHBAMAkCOCAQDIEcEAAOSIYAAAckQwAAA5IhgAgBwRDABAjggGACBHBAMAkPM4NnS+nt/+7fX+bDfuipU5r5ha5ynO5O9f5xVT93fFjveo9s5xrv72Wq2oPe8UX4IBAMgRwQAA5IhgAAByRDAAADkiGACAHBEMAECOCAYAIEcEAwCQI4IBAMgRwQAA5IhgAAByRDAAADkiGACAHBEMAECOCAYAIEcEAwCQI4IBAMgRwQAA5IhgAAByvu77np7DNs7Xc2Tc6/0ZmfPUuCt2nDO//2ys2PFcuUc/s1ZTdnw/r6jdwRXnUDNM8SUYAIAcEQwAQI4IBgAgRwQDAJAjggEAyBHBAADkiGAAAHJEMAAAOSIYAIAcEQwAQI4IBgAgRwQDAJAjggEAyBHBAADkiGAAAHJEMAAAOSIYAIAcEQwAQI4IBgAg5zE9gYrr/fn2b8/X8yjNeWXcld+umBp3ap2nxt2R+4tzNXsXdnxf1f5TpvgSDABAjggGACBHBAMAkCOCAQDIEcEAAOSIYAAAckQwAAA5IhgAgBwRDABAjggGACBHBAMAkCOCAQDIEcEAAOSIYAAAckQwAAA5IhgAgBwRDABAjggGACBHBAMAkPN13/f0HPgH5+u53Rpd70/qeVdYq7+9RzUr93fHuzA1Z2fyb6/zjvfo2vA96UswAAA5IhgAgBwRDABAjggGACBHBAMAkCOCAQDIEcEAAOSIYAAAckQwAAA5IhgAgBwRDABAjggGACBHBAMAkCOCAQDIEcEAAOSIYAAAckQwAAA5IhgAgBwRDABAztd939Nz2Mb5eh4l1/szPYVtTJ2NlT0y59+/zu7g7ze1v+7v31Y7G1N8CQYAIEcEAwCQI4IBAMgRwQAA5IhgAAByRDAAADkiGACAHBEMAECOCAYAIEcEAwCQI4IBAMgRwQAA5IhgAAByRDAAADkiGACAHBEMAECOCAYAIEcEAwCQI4IBAMj5uu/7KDlfz5Fxr/dnZM47jjuldjZW2F/r/P/Bu85a/bazwd/mSzAAADkiGACAHBEMAECOCAYAIEcEAwCQI4IBAMgRwQAA5IhgAAByRDAAADkiGACAHBEMAECOCAYAIEcEAwCQI4IBAMgRwQAA5IhgAAByRDAAADkiGACAHBEMAEDO133fx27O13Nk3Ov92e55zflnOJM/cyan7sLU/k6prdWOZ3LFjns0ZcezUfs/WuFLMAAAOSIYAIAcEQwAQI4IBgAgRwQDAJAjggEAyBHBAADkiGAAAHJEMAAAOSIYAIAcEQwAQI4IBgAgRwQDAJAjggEAyBHBAADkiGAAAHJEMAAAOSIYAIAcEQwAQM7j2ND1/nz7t+fr+R+dy1+2slYre7TjnGvPu2LqDu64Vjuu845rteP/0Y7rbK1+/9k4Y43kSzAAADkiGACAHBEMAECOCAYAIEcEAwCQI4IBAMgRwQAA5IhgAAByRDAAADkiGACAHBEMAECOCAYAIEcEAwCQI4IBAMgRwQAA5IhgAAByRDAAADkiGACAHBEMAEDO49jQ+Xp++7fX+3PsZmXOU2u1Mu6KHee8wvP+/v2t3YUd37E73v0VU3vk/4jfxpdgAAByRDAAADkiGACAHBEMAECOCAYAIEcEAwCQI4IBAMgRwQAA5IhgAAByRDAAADkiGACAHBEMAECOCAYAIEcEAwCQI4IBAMgRwQAA5IhgAAByRDAAADkiGACAnMf0BHZyvp7f/u31/hy7mXrelXF3nPOOZ2PHOe/IOv/tO7gy5ylTc97x3b7jmbxi73ZfggEAyBHBAADkiGAAAHJEMAAAOSIYAIAcEQwAQI4IBgAgRwQDAJAjggEAyBHBAADkiGAAAHJEMAAAOSIYAIAcEQwAQI4IBgAgRwQDAJAjggEAyBHBAADkiGAAAHIe0xPgn52v57eX6Xp/tpvziqnnrZ2Nqf1dMfW8O47Lv692NnZ8b+z4vppyxt45vgQDAJAjggEAyBHBAADkiGAAAHJEMAAAOSIYAIAcEQwAQI4IBgAgRwQDAJAjggEAyBHBAADkiGAAAHJEMAAAOSIYAIAcEQwAQI4IBgAgRwQDAJAjggEAyBHBAADkfN33fezmfD2//dvr/TlKz7ujlT2aOhu1PeLf553zt9eq9l/mXfe3XbE76EswAAA5IhgAgBwRDABAjggGACBHBAMAkCOCAQDIEcEAAOSIYAAAckQwAAA5IhgAgBwRDABAjggGACBHBAMAkCOCAQDIEcEAAOSIYAAAckQwAAA5IhgAgBwRDABAztd939NzgP/lfD1HVuR6f1JzXrHyvDuu85SptdrxXNXWuTbulNqZXLHj/voSDABAjggGACBHBAMAkCOCAQDIEcEAAOSIYAAAckQwAAA5IhgAgBwRDABAjggGACBHBAMAkCOCAQDIEcEAAOSIYAAAckQwAAA5IhgAgBwRDABAjggGACBHBAMAkPM4NnS+ntNT4B9c78/Ib1fOxtS5mnrelXGnTM15ap133N8d3887rvMKe8RfOs8rfAkGACBHBAMAkCOCAQDIEcEAAOSIYAAAckQwAAA5IhgAgBwRDABAjggGACBHBAMAkCOCAQDIEcEAAOSIYAAAckQwAAA5IhgAgBwRDABAjggGACBHBAMAkCOCAQDI+brv+9jN+Xp++7fX+/MfnctfZp3/9jrX9nfleVdMrZX9/f12PBsrvDd+/1qdsf8FX4IBAMgRwQAA5IhgAAByRDAAADkiGACAHBEMAECOCAYAIEcEAwCQI4IBAMgRwQAA5IhgAAByRDAAADkiGACAHBEMAECOCAYAIEcEAwCQI4IBAMgRwQAA5IhgAAByHtMT2Mn5eh67ud6fYzfW+W+v1Y7Pu3KPVua8Mu7U3a/t0ZSpc7Uy7o7rXDuT14bNsMKXYAAAckQwAAA5IhgAgBwRDABAjggGACBHBAMAkCOCAQDIEcEAAOSIYAAAckQwAAA5IhgAgBwRDABAjggGACBHBAMAkCOCAQDIEcEAAOSIYAAAckQwAAA5IhgAgJzH9ASA/Zyv51Gy8rzX+3PsZup5V8Y1559ZqylT52pq3Cln7F3nSzAAADkiGACAHBEMAECOCAYAIEcEAwCQI4IBAMgRwQAA5IhgAAByRDAAADkiGACAHBEMAECOCAYAIEcEAwCQI4IBAMgRwQAA5IhgAAByRDAAADkiGACAHBEMAEDOY3oC8Becr+e3f3u9P0fpeXc0tUdT67zyvOb8t9d5ytTz1s7zteH/0QpfggEAyBHBAADkiGAAAHJEMAAAOSIYAIAcEQwAQI4IBgAgRwQDAJAjggEAyBHBAADkiGAAAHJEMAAAOSIYAIAcEQwAQI4IBgAgRwQDAJAjggEAyBHBAADkiGAAAHIe0xPYyfX+TE8hYWWdz9fzKM15x7Xa8Q5O7dGOz7ujHd/ttbtfez/zM3wJBgAgRwQDAJAjggEAyBHBAADkiGAAAHJEMAAAOSIYAIAcEQwAQI4IBgAgRwQDAJAjggEAyBHBAADkiGAAAHJEMAAAOSIYAIAcEQwAQI4IBgAgRwQDAJAjggEAyHkcMefrOT0Ffqnr/Rk5V1PjrliZ84qpdd5R7UzW1mrqPO94j3Y8k7U9muJLMAAAOSIYAIAcEQwAQI4IBgAgRwQDAJAjggEAyBHBAADkiGAAAHJEMAAAOSIYAIAcEQwAQI4IBgAgRwQDAJAjggEAyBHBAADkiGAAAHJEMAAAOSIYAIAcEQwAQM7Xfd/TcwAAgB/lSzAAADkiGACAHBEMAECOCAYAIEcEAwCQI4IBAMgRwQAA5IhgAAByRDAAADkiGACAHBEMAECOCAYAIEcEAwCQI4IBAMgRwQAA5IhgAAByRDAAADkiGACAHBEMAECOCAYAIEcEAwCQI4IBAMgRwQAA5IhgAAByRDAAADkiGACAHBEMAECOCAYAIEcEAwCQI4IBAMgRwQAA5IhgAAByRDAAADkiGACAHBEMAECOCAYAIEcEAwCQI4IBAMgRwQAA5IhgAAByRDAAADkiGACAHBEMAECOCAYAIEcEAwCQI4IBAMgRwQAA5IhgAAByRDAAADkiGACAHBEMAECOCAYAIEcEAwCQI4IBAMgRwQAA5IhgAAByRDAAADkiGACAHBEMAMBR898yv83975e0jAAAAABJRU5ErkJggg==" alt="Scan to find your revenue leak">
+    </div>
+    <div class="qr-cta">Book a Free Demo</div>
+    <div class="qr-url">cliniccatalyst.com.au</div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="zone-footer">
+    <div class="footer-text">Done-For-You Patient Acquisition</div>
+  </div>
+</div>
+
+</body>
+</html>
