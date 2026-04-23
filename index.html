@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clinic Catalyst - We Fill Clinics</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal:#00B4A0;
+  --teal-bright:#00D4BC;
+  --teal-dark:#007A6E;
+  --hero-dark:#0A2A28;
+  --hero-mid:#0D3D38;
+  --dark-section:#0E2D2A;
+  --white:#FFFFFF;
+  --off-white:#F4F4F4;
+  --light-gray:#EBEBEB;
+  --text-dark:#1A1A1A;
+  --text-mid:#444;
+  --text-light:#777;
+  --border:#E0E0E0;
+  --red:#E84040;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Open Sans',sans-serif;background:var(--white);color:var(--text-dark);overflow-x:hidden;}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 4rem;height:64px;background:rgba(10,42,40,0.97);backdrop-filter:blur(10px);transition:transform .3s;}
+.nav-logo{font-family:'Montserrat',sans-serif;font-size:1.2rem;font-weight:900;color:var(--white);letter-spacing:.04em;}
+.nav-logo span{color:var(--teal-bright);}
+.nav-cta{background:transparent;border:1.5px solid var(--teal-bright);color:var(--teal-bright);padding:.45rem 1.2rem;font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:all .2s;cursor:pointer;}
+.nav-cta:hover{background:var(--teal-bright);color:var(--hero-dark);}
+
+/* SHARED */
+.section-dark{background:var(--hero-dark);position:relative;overflow:hidden;padding:5rem 4rem;}
+.section-dark-alt{background:var(--dark-section);position:relative;overflow:hidden;padding:5rem 4rem;}
+.section-light{background:var(--off-white);padding:5rem 4rem;}
+.section-white{background:var(--white);padding:5rem 4rem;}
+.inner{max-width:1100px;margin:0 auto;position:relative;z-index:2;}
+.dot-net{position:absolute;inset:0;opacity:.12;background-image:radial-gradient(circle,var(--teal) 1px,transparent 1px);background-size:60px 60px;z-index:0;}
+.glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(0,180,160,.2) 0%,transparent 70%);z-index:1;}
+.glow-tl{top:-150px;left:-150px;}
+.glow-br{bottom:-150px;right:-150px;}
+.glow-c{top:50%;left:50%;transform:translate(-50%,-50%);}
+.label{font-family:'Montserrat',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);margin-bottom:.75rem;}
+.label-bright{color:var(--teal-bright);}
+.section-title{font-family:'Montserrat',sans-serif;font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;text-transform:uppercase;line-height:1.1;margin-bottom:1.5rem;}
+.section-title.white{color:var(--white);}
+.section-title span{color:var(--teal-bright);}
+.section-title .teal{color:var(--teal);}
+.body-text{font-size:.88rem;color:var(--text-mid);font-weight:300;line-height:1.85;max-width:680px;}
+.body-text-light{font-size:.88rem;color:rgba(255,255,255,.55);font-weight:300;line-height:1.85;max-width:680px;}
+.btn-primary{display:inline-block;background:var(--teal-bright);color:var(--hero-dark);padding:.9rem 2.2rem;font-family:'Montserrat',sans-serif;font-size:.75rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:all .2s;border:none;cursor:pointer;}
+.btn-primary:hover{background:#00ffec;transform:translateY(-1px);}
+.btn-outline{display:inline-block;border:2px solid var(--teal-bright);color:var(--teal-bright);padding:.8rem 2rem;font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;background:transparent;cursor:pointer;transition:all .2s;}
+.btn-outline:hover{background:var(--teal-bright);color:var(--hero-dark);}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding-top:64px;}
+.hero-bg{position:absolute;inset:0;z-index:0;}
+.hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.12;filter:saturate(0.3);}
+.hero-bg video{width:100%;height:100%;object-fit:cover;opacity:.15;filter:saturate(0.3);}
+@media(max-width:768px){.hero-bg video{display:none;}}
+.hero .inner{text-align:center;padding:4rem 0;}
+
+/* CLINIC TYPES STRIP */
+.clinic-strip{display:flex;gap:0;overflow:hidden;margin-top:0;}
+.clinic-strip-item{flex:1;min-width:0;position:relative;height:200px;overflow:hidden;}
+.clinic-strip-item img{width:100%;height:100%;object-fit:cover;filter:saturate(.7);transition:all .4s;}
+.clinic-strip-item:hover img{filter:saturate(1);transform:scale(1.05);}
+.clinic-strip-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,42,40,.85) 0%,rgba(10,42,40,.3) 60%,transparent 100%);}
+.clinic-strip-label{position:absolute;bottom:.75rem;left:0;right:0;text-align:center;font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-bright);z-index:1;}
+
+/* IMAGE SECTIONS */
+.img-split{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch;}
+.img-split-text{padding:4rem;display:flex;flex-direction:column;justify-content:center;}
+.img-split-photo{position:relative;overflow:hidden;min-height:400px;}
+.img-split-photo img{width:100%;height:100%;object-fit:cover;}
+.img-split-photo-overlay{position:absolute;inset:0;background:linear-gradient(90deg,var(--hero-dark) 0%,transparent 30%);}
+.img-banner{position:relative;height:300px;overflow:hidden;}
+.img-banner img{width:100%;height:100%;object-fit:cover;object-position:center;}
+.img-banner-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,var(--hero-dark) 0%,rgba(10,42,40,.6) 50%,var(--hero-dark) 100%);}
+.hero-label{font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--teal-bright);margin-bottom:1.5rem;animation:fadeUp .6s ease both .1s;opacity:0;}
+.hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(2rem,5vw,3.4rem);font-weight:900;text-transform:uppercase;color:var(--white);line-height:1.05;margin-bottom:1.5rem;animation:fadeUp .7s ease both .2s;opacity:0;}
+.hero h1 em{font-style:normal;color:var(--teal-bright);}
+.hero-sub{font-size:.95rem;color:rgba(255,255,255,.6);font-weight:300;line-height:1.85;max-width:600px;margin:0 auto 2rem;animation:fadeUp .7s ease both .35s;opacity:0;}
+.hero-stat{display:inline-flex;background:rgba(255,255,255,.07);backdrop-filter:blur(8px);border:1px solid rgba(0,180,160,.3);padding:1rem 2rem;margin-bottom:2rem;animation:fadeUp .7s ease both .45s;opacity:0;}
+.hero-stat-val{font-family:'Montserrat',sans-serif;font-size:2.5rem;font-weight:900;color:var(--teal-bright);line-height:1;margin-right:1rem;}
+.hero-stat-label{font-size:.75rem;color:rgba(255,255,255,.55);font-weight:300;text-align:left;max-width:180px;line-height:1.4;}
+.hero .btn-primary{animation:fadeUp .7s ease both .55s;opacity:0;}
+.hero-safety{font-size:.72rem;color:rgba(255,255,255,.35);margin-top:1rem;animation:fadeUp .7s ease both .65s;opacity:0;}
+
+/* MIRROR - PAIN */
+.pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:2rem;}
+.pain-card{background:var(--white);border-left:3px solid var(--teal);padding:1.5rem;transition:transform .2s;}
+.pain-card:hover{transform:translateY(-2px);}
+.pain-icon{font-size:1.3rem;margin-bottom:.5rem;}
+.pain-card p{font-size:.83rem;color:var(--text-mid);font-weight:300;line-height:1.75;}
+
+/* AGITATE - COST */
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin:2.5rem 0;}
+.stat-card{background:rgba(255,255,255,.06);backdrop-filter:blur(8px);border:1px solid rgba(0,180,160,.25);padding:1.5rem;text-align:center;}
+.stat-val{font-family:'Montserrat',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:900;line-height:1;}
+.stat-val.red{color:var(--red);}
+.stat-val.teal{color:var(--teal-bright);}
+.stat-label{font-size:.72rem;color:rgba(255,255,255,.5);font-weight:300;margin-top:.35rem;line-height:1.4;}
+.stat-source{font-size:.58rem;color:rgba(255,255,255,.25);margin-top:.25rem;font-style:italic;}
+
+/* BRIDGE - SOLUTION */
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin:2rem 0 2.5rem;}
+.compare-box{padding:2rem;position:relative;}
+.compare-box.without{border:1px solid rgba(232,64,64,.4);background:rgba(232,64,64,.03);}
+.compare-box.with{border:2px solid var(--teal);background:rgba(0,180,160,.04);}
+.compare-tag{font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:1rem;}
+.compare-box.without .compare-tag{color:var(--red);}
+.compare-box.with .compare-tag{color:var(--teal);}
+.compare-box ul{list-style:none;display:flex;flex-direction:column;gap:.6rem;}
+.compare-box ul li{font-size:.82rem;color:var(--text-mid);font-weight:300;display:flex;align-items:flex-start;gap:.5rem;line-height:1.5;}
+.compare-box.without ul li::before{content:'\2717';color:var(--red);font-weight:700;flex-shrink:0;}
+.compare-box.with ul li::before{content:'\2713';color:var(--teal);font-weight:700;flex-shrink:0;}
+.bridge-statement{font-family:'Montserrat',sans-serif;font-size:clamp(1.2rem,2.5vw,1.8rem);font-weight:800;text-transform:uppercase;text-align:center;color:var(--text-dark);}
+.bridge-statement span{color:var(--teal);}
+
+/* SYSTEM */
+.step-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.08);margin-top:2.5rem;}
+.step{background:var(--hero-dark);padding:2rem;border-top:3px solid transparent;transition:border-color .2s;}
+.step:hover{border-top-color:var(--teal-bright);}
+.step-n{font-family:'Montserrat',sans-serif;font-size:2.2rem;font-weight:900;color:rgba(255,255,255,.08);line-height:1;margin-bottom:.5rem;}
+.step-title{font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:700;color:var(--white);text-transform:uppercase;letter-spacing:.04em;margin-bottom:.4rem;}
+.step-desc{font-size:.78rem;color:rgba(255,255,255,.45);font-weight:300;line-height:1.7;}
+.pipeline{display:flex;align-items:center;justify-content:center;gap:0;margin-top:2.5rem;flex-wrap:wrap;}
+.pipe-item{font-family:'Montserrat',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--teal-bright);padding:.5rem 1rem;border:1px solid rgba(0,212,188,.3);background:rgba(0,212,188,.08);}
+.pipe-arrow{color:rgba(255,255,255,.2);font-size:1.2rem;padding:0 .25rem;}
+
+/* PROOF */
+.proof-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin:2rem 0;}
+.proof-stat{background:var(--white);border-left:3px solid var(--teal);padding:1.5rem;}
+.proof-val{font-family:'Montserrat',sans-serif;font-size:2rem;font-weight:900;color:var(--teal-dark);line-height:1;}
+.proof-label{font-size:.75rem;color:var(--text-light);font-weight:300;margin-top:.3rem;}
+.case-card{background:var(--white);border:1px solid var(--border);padding:2rem;margin-top:1.5rem;}
+.case-card h4{font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:700;text-transform:uppercase;color:var(--text-dark);margin-bottom:.75rem;}
+.case-card p{font-size:.83rem;color:var(--text-mid);font-weight:300;line-height:1.8;margin-bottom:1rem;}
+.case-badge{display:inline-flex;gap:1.5rem;flex-wrap:wrap;}
+.case-badge span{font-family:'Montserrat',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-dark);border:1px solid rgba(0,180,160,.3);padding:.3rem .8rem;background:rgba(0,180,160,.06);}
+.cost-table{margin-top:2rem;}
+.cost-row{display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem;border-bottom:1px solid var(--border);}
+.cost-row:last-child{border-bottom:none;}
+.cost-row .cl{font-size:.83rem;color:var(--text-mid);font-weight:300;}
+.cost-row .cv{font-size:.88rem;font-weight:700;}
+.cost-row .cv.red{color:var(--red);}
+.cost-row.highlight{background:rgba(0,180,160,.06);border-left:3px solid var(--teal);}
+.cost-row.highlight .cl{color:var(--teal-dark);font-weight:600;}
+.cost-row.highlight .cv{color:var(--teal-dark);}
+
+/* PACKAGES */
+.pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem;}
+.pkg{border:1px solid rgba(255,255,255,.08);padding:2rem;background:rgba(255,255,255,.03);transition:transform .2s;}
+.pkg:hover{transform:translateY(-4px);}
+.pkg.featured{background:rgba(0,212,188,.06);border:1px solid var(--teal);border-top:3px solid var(--teal-bright);}
+.pkg.bespoke{background:rgba(255,255,255,.02);border:1px solid rgba(0,180,160,.2);}
+.pkg-tag{font-family:'Montserrat',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:.75rem;}
+.pkg.featured .pkg-tag{color:var(--teal-bright);}
+.pkg-name{font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:800;text-transform:uppercase;color:var(--white);margin-bottom:.75rem;}
+.pkg-price{font-family:'Montserrat',sans-serif;font-size:2.5rem;font-weight:900;color:var(--white);line-height:1;}
+.pkg.featured .pkg-price{color:var(--teal-bright);}
+.pkg-period{font-size:.75rem;color:rgba(255,255,255,.35);margin-top:.2rem;}
+.pkg-div{border:none;border-top:1px solid rgba(255,255,255,.08);margin:1.25rem 0;}
+.pkg.featured .pkg-div{border-color:rgba(0,212,188,.2);}
+.pkg-list{list-style:none;display:flex;flex-direction:column;gap:.5rem;}
+.pkg-list li{font-size:.78rem;color:rgba(255,255,255,.55);font-weight:300;display:flex;align-items:flex-start;gap:.5rem;line-height:1.5;}
+.pkg-list li::before{content:'\2192';color:var(--teal-bright);flex-shrink:0;font-weight:700;}
+.pkg-cta{display:block;text-align:center;margin-top:1.5rem;padding:.8rem;font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:all .2s;border:1.5px solid rgba(255,255,255,.15);color:rgba(255,255,255,.5);background:transparent;}
+.pkg-cta:hover{border-color:var(--teal-bright);color:var(--teal-bright);}
+.pkg.featured .pkg-cta{background:var(--teal-bright);color:var(--hero-dark);border-color:var(--teal-bright);}
+.pkg.featured .pkg-cta:hover{background:#00ffec;}
+.pkg.bespoke .pkg-cta{border-color:var(--teal-bright);color:var(--teal-bright);}
+.pkg.bespoke .pkg-cta:hover{background:var(--teal-bright);color:var(--hero-dark);}
+
+/* FAQ */
+.faqs{margin-top:2rem;max-width:800px;}
+.faq-item{border-top:1px solid var(--border);background:var(--white);}
+.faq-item:last-child{border-bottom:1px solid var(--border);}
+.faq-q{width:100%;text-align:left;padding:1.2rem 1.5rem;font-family:'Montserrat',sans-serif;font-size:.85rem;font-weight:700;color:var(--text-dark);background:var(--white);border:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;transition:color .2s,background .2s;}
+.faq-q:hover{color:var(--teal);background:rgba(0,180,160,.03);}
+.faq-q.open{color:var(--teal);background:rgba(0,180,160,.05);}
+.faq-icon{flex-shrink:0;font-size:1.2rem;transition:transform .2s;color:currentColor;}
+.faq-q.open .faq-icon{transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;padding:0 1.5rem;font-size:.83rem;color:var(--text-mid);line-height:1.8;font-weight:300;background:rgba(0,180,160,.03);}
+.faq-a.open{max-height:300px;padding:.5rem 1.5rem 1.25rem;}
+
+/* FINAL CTA */
+.final-cta{text-align:center;}
+.final-cta h2{font-family:'Montserrat',sans-serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:900;text-transform:uppercase;color:var(--white);line-height:1.1;margin-bottom:1.25rem;}
+.final-cta h2 span{color:var(--teal-bright);}
+.final-cta p{font-size:.9rem;color:rgba(255,255,255,.5);font-weight:300;line-height:1.85;margin-bottom:2.5rem;max-width:600px;margin-left:auto;margin-right:auto;}
+.final-safety{font-size:.72rem;color:rgba(255,255,255,.25);margin-top:1rem;}
+.brand-bar{height:4px;background:linear-gradient(90deg,var(--teal-bright),var(--teal),var(--teal-dark));margin-top:3rem;}
+
+/* FOOTER */
+footer{background:#070F0E;padding:1.5rem 4rem;text-align:center;}
+footer p{font-size:.65rem;color:rgba(255,255,255,.15);letter-spacing:.06em;text-transform:uppercase;}
+
+/* MOBILE CTA BAR */
+.mobile-cta{display:none;position:fixed;bottom:0;left:0;right:0;z-index:300;background:rgba(10,42,40,.97);border-top:1px solid rgba(0,180,160,.3);padding:.75rem 1rem;backdrop-filter:blur(10px);}
+.mobile-cta .btn-primary{width:100%;text-align:center;padding:.85rem;}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .nav{padding:0 1.5rem;}
+  .section-dark,.section-dark-alt,.section-light,.section-white{padding:3rem 1.5rem;}
+  .hero .inner{padding:3rem 0;}
+  .pain-grid{grid-template-columns:1fr;}
+  .stat-row{grid-template-columns:1fr;}
+  .compare-grid{grid-template-columns:1fr;}
+  .step-grid{grid-template-columns:1fr;}
+  .proof-stats{grid-template-columns:1fr;}
+  .pkg-grid{grid-template-columns:1fr;}
+  .pipeline{flex-direction:column;gap:.5rem;}
+  .pipe-arrow{transform:rotate(90deg);}
+  .mobile-cta{display:block;}
+  .hero-stat-val{font-size:2rem;}
+  .clinic-strip-item{height:120px;}
+  .img-split{grid-template-columns:1fr;}
+  .img-split-photo{min-height:250px;}
+  .img-split-photo-overlay{background:linear-gradient(to bottom,var(--hero-dark) 0%,transparent 30%);}
+  .img-banner{height:200px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">CLINIC<span>CATALYST</span></div>
+  <a href="#book" class="nav-cta">Book a Free Session</a>
+</nav>
+
+<!-- SECTION 1: HERO -->
+<section class="hero section-dark">
+  <div class="hero-bg"><video autoplay muted loop playsinline><source src="cc-hero-video.mp4" type="video/mp4"></video></div>
+  <div class="dot-net"></div>
+  <div class="glow glow-tl"></div>
+  <div class="inner">
+    <div class="hero-label">Done-For-You Patient Acquisition</div>
+    <h1>You don't have a<br>marketing problem.<br><em>You have a conversion problem.</em></h1>
+    <p class="hero-sub">Your ads are generating leads. But your team is too busy treating patients to answer the phone. Every missed call is a patient your competitor books instead.</p>
+    <div class="hero-stat">
+      <div class="hero-stat-val">78%</div>
+      <div class="hero-stat-label">of sales go to the first business that responds</div>
+    </div>
+    <br>
+    <a href="#book" class="btn-primary">Book Your Free Strategy Session</a>
+    <p class="hero-safety">No lock-in contracts. Month-to-month. Cancel anytime.</p>
+  </div>
+</section>
+
+<!-- CLINIC TYPES STRIP -->
+<div class="clinic-strip">
+  <div class="clinic-strip-item"><img src="cc-img-aesthetics.jpg" alt="Aesthetics clinic" loading="lazy"><div class="clinic-strip-overlay"></div><div class="clinic-strip-label">Aesthetics</div></div>
+  <div class="clinic-strip-item"><img src="cc-img-dental.jpg" alt="Dental clinic" loading="lazy"><div class="clinic-strip-overlay"></div><div class="clinic-strip-label">Dental</div></div>
+  <div class="clinic-strip-item"><img src="cc-img-physio.jpg" alt="Physiotherapy clinic" loading="lazy"><div class="clinic-strip-overlay"></div><div class="clinic-strip-label">Physio</div></div>
+  <div class="clinic-strip-item"><img src="cc-img-medical.jpg" alt="Medical clinic" loading="lazy"><div class="clinic-strip-overlay"></div><div class="clinic-strip-label">Medical</div></div>
+  <div class="clinic-strip-item"><img src="cc-img-psychology.jpg" alt="Psychology practice" loading="lazy"><div class="clinic-strip-overlay"></div><div class="clinic-strip-label">Psychology</div></div>
+  <div class="clinic-strip-item"><img src="cc-img-vet.jpg" alt="Veterinary clinic" loading="lazy"><div class="clinic-strip-overlay"></div><div class="clinic-strip-label">Veterinary</div></div>
+  <div class="clinic-strip-item"><img src="cc-img-optometry.jpg" alt="Optometry practice" loading="lazy"><div class="clinic-strip-overlay"></div><div class="clinic-strip-label">Optometry</div></div>
+</div>
+
+<!-- SECTION 2: MIRROR - PAIN -->
+<section class="section-light">
+  <div class="inner">
+    <div class="label">The Reality</div>
+    <div class="section-title">Sound <span class="teal">familiar?</span></div>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <p><strong style="color:var(--teal-dark);">The After-Hours Enquiry.</strong> Leads come in at 7pm. You see them at 9am. They already booked somewhere else.</p>
+      </div>
+      <div class="pain-card">
+        <p><strong style="color:var(--teal-dark);">The Overwhelmed Front Desk.</strong> Your receptionist is juggling check-ins, phone calls, and DMs. Follow-up falls to the bottom of the pile.</p>
+      </div>
+      <div class="pain-card">
+        <p><strong style="color:var(--teal-dark);">The Agency That Didn't Deliver.</strong> You've tried agencies before. They sent leads. Nobody called them fast enough.</p>
+      </div>
+      <div class="pain-card">
+        <p><strong style="color:var(--teal-dark);">The Disappearing Patient.</strong> Patients start a 6-session plan, complete 3, and disappear. Nobody follows up.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: AGITATE - COST -->
+<section class="section-dark-alt">
+  <div class="dot-net"></div>
+  <div class="glow glow-br"></div>
+  <div class="inner">
+    <div class="label label-bright">The Cost of Doing Nothing</div>
+    <div class="section-title white">Every day you wait,<br>your competitors <span>call first.</span></div>
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="stat-val red">$8,000</div>
+        <div class="stat-label">Lost every month to slow follow-up</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val teal">60x</div>
+        <div class="stat-label">More likely to qualify a lead in 5 min vs 24 hours</div>
+        <div class="stat-source">Harvard Business Review</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val red">1 in 4</div>
+        <div class="stat-label">Clinic calls go completely unanswered</div>
+        <div class="stat-source">Talkdesk Healthcare Report 2025</div>
+      </div>
+    </div>
+    <p class="body-text-light">That lead who enquired at 7pm? They booked with your competitor at 7:05pm. The patient who stopped their treatment plan halfway? That's $2,000 to $4,000 walking out the door. The receptionist who's too busy with walk-ins to return missed calls? That's your pipeline leaking revenue every single day.</p>
+  </div>
+</section>
+
+<!-- IMAGE BANNER - RECEPTIONIST -->
+<div class="img-banner">
+  <img src="cc-img-reception.jpg" alt="Clinic receptionist on phone" loading="lazy">
+  <div class="img-banner-overlay"></div>
+</div>
+
+<!-- SECTION 4: BRIDGE - SOLUTION -->
+<section class="section-white">
+  <div class="inner">
+    <div class="label">The Solution</div>
+    <div class="section-title">What if every lead got a call<br><span class="teal">in under 60 seconds?</span></div>
+    <div class="compare-grid">
+      <div class="compare-box without">
+        <div class="compare-tag">Without Clinic Catalyst</div>
+        <ul>
+          <li>Leads go cold overnight</li>
+          <li>Staff overwhelmed with admin</li>
+          <li>No follow-up system</li>
+          <li>$20K to $50K lost annually</li>
+        </ul>
+      </div>
+      <div class="compare-box with">
+        <div class="compare-tag">With Clinic Catalyst</div>
+        <ul>
+          <li>Every lead called in under 60 seconds</li>
+          <li>AI handles calls, DMs, and chat 24/7</li>
+          <li>Patients booked directly into your calendar</li>
+          <li>854% ROAS from real client results</li>
+        </ul>
+      </div>
+    </div>
+    <div class="bridge-statement">We don't run ads. We fill <span>clinics.</span></div>
+  </div>
+</section>
+
+<!-- SECTION 5: THE SYSTEM -->
+<section class="section-dark">
+  <div class="dot-net"></div>
+  <div class="glow glow-tl"></div>
+  <div class="inner">
+    <div class="label label-bright">The System</div>
+    <div class="section-title white">Six steps.<br><span>Full pipeline.</span></div>
+    <p class="body-text-light">From ad click to booked appointment - fully automated.</p>
+    <div class="step-grid">
+      <div class="step">
+        <div class="step-n">01</div>
+        <div class="step-title">Targeted Ads Go Live</div>
+        <p class="step-desc">Facebook, Instagram, and Google ads built for your clinic and your ideal patient.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">02</div>
+        <div class="step-title">Leads Flow In</div>
+        <p class="step-desc">Every enquiry captured - forms, DMs, chat widget, missed calls. Nothing slips through.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">03</div>
+        <div class="step-title">AI Calls in Under 60s</div>
+        <p class="step-desc">Our AI voice caller contacts every lead instantly. No hold music. No voicemail. A real conversation.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">04</div>
+        <div class="step-title">Booked Into Your Calendar</div>
+        <p class="step-desc">Qualified leads are booked directly into your scheduling system. Your team just shows up.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">05</div>
+        <div class="step-title">Nurture Sequence Activates</div>
+        <p class="step-desc">Automated SMS and email follow-up for leads who aren't ready yet. They come back when they are.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">06</div>
+        <div class="step-title">Report. Optimise. Scale.</div>
+        <p class="step-desc">Monthly performance reports. We optimise what's working. You scale when you're ready.</p>
+      </div>
+    </div>
+    <div class="pipeline">
+      <div class="pipe-item">Ads</div><div class="pipe-arrow">&#8594;</div>
+      <div class="pipe-item">Leads</div><div class="pipe-arrow">&#8594;</div>
+      <div class="pipe-item">AI Calls</div><div class="pipe-arrow">&#8594;</div>
+      <div class="pipe-item">Books</div><div class="pipe-arrow">&#8594;</div>
+      <div class="pipe-item">Nurtures</div><div class="pipe-arrow">&#8594;</div>
+      <div class="pipe-item">Scales</div>
+    </div>
+  </div>
+</section>
+
+<!-- IMAGE BANNER - CALLER -->
+<div class="img-banner">
+  <img src="cc-img-caller.jpg" alt="Happy patient on phone call" loading="lazy">
+  <div class="img-banner-overlay" style="background:linear-gradient(to bottom,var(--hero-dark) 0%,rgba(10,42,40,.4) 50%,var(--off-white) 100%);"></div>
+</div>
+
+<!-- SECTION 6: SOCIAL PROOF -->
+<section class="section-light">
+  <div class="inner">
+    <div class="label">Real Results</div>
+    <div class="section-title">Don't take our <span class="teal">word for it.</span></div>
+    <div class="proof-stats">
+      <div class="proof-stat">
+        <div class="proof-val">854%</div>
+        <div class="proof-label">ROAS - real client, intro offers only</div>
+      </div>
+      <div class="proof-stat">
+        <div class="proof-val">940%</div>
+        <div class="proof-label">ROAS - another real client result</div>
+      </div>
+      <div class="proof-stat">
+        <div class="proof-val">$15K+</div>
+        <div class="proof-label">Saved annually vs hiring a call centre</div>
+      </div>
+    </div>
+    <div class="case-card">
+      <h4>From 2-Day Response to Under 60 Seconds</h4>
+      <p>This clinic was spending $8K per month on ads and blaming their agency for bad leads. The leads were fine. The follow-up was 2 days late. We plugged in our system - same leads, same ad spend - and doubled their revenue in 30 days.</p>
+      <div class="case-badge">
+        <span>2x Revenue</span>
+        <span>30 Days</span>
+        <span>$0 Extra Ad Spend</span>
+      </div>
+    </div>
+    <div class="cost-table">
+      <div class="cost-row"><span class="cl">Call Centre</span><span class="cv red">$3,000+ / mo</span></div>
+      <div class="cost-row"><span class="cl">Full-Time After-Hours Receptionist</span><span class="cv red">$4,500+ / mo</span></div>
+      <div class="cost-row"><span class="cl">Virtual Assistant</span><span class="cv red">$2,000+ / mo</span></div>
+      <div class="cost-row highlight"><span class="cl">Clinic Catalyst</span><span class="cv">A fraction of the cost</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7: PACKAGES -->
+<section class="section-dark">
+  <div class="dot-net"></div>
+  <div class="inner">
+    <div class="label label-bright">Packages</div>
+    <div class="section-title white">Three tiers.<br><span>Zero lock-in.</span></div>
+    <p class="body-text-light">Month-to-month. Cancel anytime. No forced ad spend minimums or maximums.</p>
+    <div class="pkg-grid">
+      <div class="pkg">
+        <div class="pkg-tag">Growth Engine</div>
+        <div class="pkg-name">Ads + AI Calling</div>
+        <hr class="pkg-div">
+        <ul class="pkg-list">
+          <li>Facebook & Instagram ad campaigns</li>
+          <li>AI voice caller - every lead under 60 seconds</li>
+          <li>DM auto-replies across platforms</li>
+          <li>Website chat widget</li>
+          <li>CRM sync & calendar booking</li>
+          <li>Monthly performance report</li>
+        </ul>
+        <a href="#book" class="pkg-cta">Book a Demo</a>
+      </div>
+      <div class="pkg featured">
+        <div class="pkg-tag">Full Acquisition System</div>
+        <div class="pkg-name">Ads + AI + Google + GEO</div>
+        <hr class="pkg-div">
+        <ul class="pkg-list">
+          <li>Everything in Growth Engine</li>
+          <li>Google Ads management</li>
+          <li>GEO setup & local search optimisation</li>
+          <li>Multi-channel lead capture</li>
+          <li>SMS & email nurture sequences</li>
+          <li>Monthly strategy call</li>
+        </ul>
+        <a href="#book" class="pkg-cta">Most Popular - Book a Demo</a>
+      </div>
+      <div class="pkg bespoke">
+        <div class="pkg-tag">Enterprise</div>
+        <div class="pkg-name">Aria Clinic Manager</div>
+        <hr class="pkg-div">
+        <ul class="pkg-list">
+          <li>Everything in Full Acquisition</li>
+          <li>AI clinic manager across all channels</li>
+          <li>Deep CRM integration (Cliniko, Phorest, Timely)</li>
+          <li>Intelligent triage & practitioner routing</li>
+          <li>Returning client recognition</li>
+          <li>Custom workflow automation</li>
+          <li>Dedicated strategy partner</li>
+        </ul>
+        <a href="#book" class="pkg-cta">Request a Demo</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 8: FAQ -->
+<section class="section-white" id="faq">
+  <div class="inner">
+    <div class="label">Frequently Asked Questions</div>
+    <div class="section-title">Still have <span class="teal">questions?</span></div>
+    <div class="faqs">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Does the AI actually call people? Won't they know it's a robot?<span class="faq-icon">+</span></button>
+        <div class="faq-a">Yes, our AI makes real voice calls to every lead within 60 seconds. It's conversational, natural, and trained on clinic-specific scripts. Most leads don't notice - and more importantly, they book. The alternative is no call at all, which is what's happening now.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What if I already have a receptionist?<span class="faq-icon">+</span></button>
+        <div class="faq-a">Perfect - they can focus on the patients in front of them. Our system handles the leads your team is too busy to call. It doesn't replace your receptionist. It catches everything they can't.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">We've used marketing agencies before and got burned.<span class="faq-icon">+</span></button>
+        <div class="faq-a">Most agencies deliver leads and walk away. We deliver leads AND the system that converts them. That's the difference between running ads and filling your clinic. Plus, we're month-to-month - no lock-in contracts.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Do I need a minimum ad spend?<span class="faq-icon">+</span></button>
+        <div class="faq-a">No. There's no forced minimum or maximum. You control your ad budget entirely. We'll recommend a budget based on your goals, but you scale at your own pace.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What types of clinics does this work for?<span class="faq-icon">+</span></button>
+        <div class="faq-a">Any clinic that books appointments. We work with aesthetics, dental, medical, chiropractic, physiotherapy, psychology, veterinary, optometry, podiatry, allied health, GP clinics, and specialist practices.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How long until I see results?<span class="faq-icon">+</span></button>
+        <div class="faq-a">Most clinics see their first booked appointments within the first week of ads going live. The AI calling starts working from day one. Full pipeline optimisation typically shows strong results within 30 days.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What if I want to cancel?<span class="faq-icon">+</span></button>
+        <div class="faq-a">Cancel anytime. No exit fees, no penalties, no guilt trips. We keep clients because the system works, not because of contracts.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 9: FINAL CTA -->
+<section class="section-dark" id="book">
+  <div class="dot-net"></div>
+  <div class="glow glow-c"></div>
+  <div class="inner final-cta">
+    <div class="label label-bright">Get Started</div>
+    <h2>Your competitors are<br>already calling.<br><span>Are you?</span></h2>
+    <p>Try Aria right now - click the chat widget in the bottom right corner and hear her for yourself. Then book a live demo to see the full system in action for your clinic.</p>
+    <a href="mailto:hello@cliniccatalyst.com.au" class="btn-primary">Book a Live Demo</a>
+    <br><br>
+    <a href="tel:+61489269227" class="btn-outline">Or Call Aria Now: 0489 269 227</a>
+    <p class="final-safety">No lock-in. No forced ad spend. Month-to-month. Cancel anytime.</p>
+    <div class="brand-bar"></div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 Clinic Catalyst. All rights reserved. Serving clinics nationally across Australia.</p>
+</footer>
+
+<!-- MOBILE CTA BAR -->
+<div class="mobile-cta" id="mobileCta" style="display:none;">
+  <a href="#book" class="btn-primary">Book Your Free Session</a>
+</div>
+
+<!-- ARIA LIVE DEMO WIDGET -->
+<script src="https://elevenlabs.io/convai-widget/index.js" async></script>
+<elevenlabs-convai agent-id="agent_6101kp9zqrwke0pvtjjvdd9n9nq3"></elevenlabs-convai>
+
+<script>
+function toggleFaq(btn){
+  const a=btn.nextElementSibling;
+  const isOpen=btn.classList.contains('open');
+  btn.classList.toggle('open',!isOpen);
+  a.classList.toggle('open',!isOpen);
+}
+// Mobile CTA bar - show after scrolling past hero
+if(window.innerWidth<=768){
+  const bar=document.getElementById('mobileCta');
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{bar.style.display=e.isIntersecting?'none':'block';});
+  },{threshold:0.1});
+  observer.observe(document.querySelector('.hero'));
+}
+</script>
+</body>
+</html>
