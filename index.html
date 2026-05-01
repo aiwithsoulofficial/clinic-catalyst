@@ -39,8 +39,12 @@
 html{scroll-behavior:smooth;}
 body{font-family:'Open Sans',sans-serif;background:var(--white);color:var(--text-dark);overflow-x:hidden;}
 
+/* CONFERENCE BANNER */
+.conf-banner{position:fixed;top:0;left:0;right:0;z-index:201;background:#e7413f;text-align:center;padding:.5rem 1rem;font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;}
+.conf-banner strong{font-weight:900;}
+
 /* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 4rem;height:64px;background:rgba(10,42,40,0.97);backdrop-filter:blur(10px);transition:transform .3s;}
+.nav{position:fixed;top:36px;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 4rem;height:64px;background:rgba(10,42,40,0.97);backdrop-filter:blur(10px);transition:transform .3s;}
 .nav-logo{font-family:'Montserrat',sans-serif;font-size:1.2rem;font-weight:900;color:var(--white);letter-spacing:.04em;}
 .nav-logo span{color:var(--teal-bright);}
 .nav-cta{background:transparent;border:1.5px solid var(--teal-bright);color:var(--teal-bright);padding:.45rem 1.2rem;font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:all .2s;cursor:pointer;}
@@ -71,7 +75,7 @@ body{font-family:'Open Sans',sans-serif;background:var(--white);color:var(--text
 .btn-outline:hover{background:var(--teal-bright);color:var(--hero-dark);}
 
 /* HERO */
-.hero{min-height:100vh;display:flex;align-items:center;padding-top:64px;}
+.hero{min-height:100vh;display:flex;align-items:center;padding-top:100px;}
 .hero-bg{position:absolute;inset:0;z-index:0;}
 .hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.12;filter:saturate(0.3);}
 .hero-bg video{width:100%;height:100%;object-fit:cover;object-position:center top;opacity:.2;filter:saturate(0.4);}
@@ -246,6 +250,9 @@ footer p{font-size:.65rem;color:rgba(255,255,255,.15);letter-spacing:.06em;text-
 </style>
 </head>
 <body>
+
+<!-- CONFERENCE BANNER -->
+<div class="conf-banner">Exclusive offer for <strong>Aesthetics Business Masters</strong> Attendees</div>
 
 <!-- NAV -->
 <nav class="nav">
