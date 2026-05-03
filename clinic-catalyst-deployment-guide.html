@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clinic Catalyst - Client Deployment Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --dark: #0A2A28;
+  --dark-mid: #0F3634;
+  --teal: #00D4BC;
+  --teal-mid: #00B4A0;
+  --teal-dark: #007A6E;
+  --teal-bg: rgba(0,212,188,0.06);
+  --teal-border: rgba(0,212,188,0.2);
+  --white: #FFFFFF;
+  --grey-50: #F8FAFA;
+  --grey-100: #EEF2F2;
+  --grey-200: #D5DEDE;
+  --grey-400: #8A9B9A;
+  --grey-600: #5A6D6C;
+  --red: #E84040;
+  --red-bg: rgba(232,64,64,0.06);
+  --red-border: rgba(232,64,64,0.2);
+  --green: #16a34a;
+  --green-bg: rgba(22,163,74,0.06);
+  --green-border: rgba(22,163,74,0.2);
+  --amber: #d97706;
+  --amber-bg: rgba(217,119,6,0.06);
+  --amber-border: rgba(217,119,6,0.2);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Open Sans', sans-serif; background: var(--grey-50); color: var(--dark); font-weight: 400; line-height: 1.7; }
+.container { max-width: 960px; margin: 0 auto; padding: 40px 24px; }
+
+.header { text-align: center; padding: 48px 0 40px; }
+.header-badge { display: inline-block; font-family: 'Montserrat', sans-serif; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; font-weight: 800; color: var(--teal); background: var(--teal-bg); border: 1px solid var(--teal-border); padding: 6px 16px; border-radius: 0; margin-bottom: 16px; }
+.header h1 { font-family: 'Montserrat', sans-serif; font-size: clamp(28px, 4vw, 42px); font-weight: 900; text-transform: uppercase; letter-spacing: 1px; color: var(--dark); margin-bottom: 8px; }
+.header h1 span { color: var(--teal); }
+.header-sub { font-size: 15px; color: var(--grey-600); font-weight: 300; }
+
+.phase { margin-bottom: 40px; }
+.phase-header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid var(--teal); }
+.phase-number { font-family: 'Montserrat', sans-serif; font-size: 36px; font-weight: 900; color: var(--teal); line-height: 1; min-width: 50px; }
+.phase-title { font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+.phase-timeline { font-size: 12px; color: var(--grey-400); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-left: auto; }
+
+.step { background: var(--white); border: 1px solid var(--grey-200); margin-bottom: 12px; padding: 20px 24px; }
+.step-row { display: flex; align-items: flex-start; gap: 16px; }
+.step-check { width: 24px; height: 24px; border: 2px solid var(--grey-200); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; font-size: 14px; color: var(--teal); cursor: pointer; transition: all 0.15s; }
+.step-check:hover { border-color: var(--teal); }
+.step-check.checked { background: var(--teal); border-color: var(--teal); color: var(--white); }
+.step-content { flex: 1; }
+.step-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; margin-bottom: 4px; }
+.step-desc { font-size: 13px; color: var(--grey-600); line-height: 1.6; }
+.step-owner { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 2px 8px; margin-top: 6px; }
+.step-owner.us { background: var(--teal-bg); color: var(--teal-dark); border: 1px solid var(--teal-border); }
+.step-owner.client { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-border); }
+
+.info-box { padding: 16px 20px; margin: 16px 0; font-size: 13px; line-height: 1.6; }
+.info-box.teal { background: var(--teal-bg); border-left: 3px solid var(--teal); }
+.info-box.red { background: var(--red-bg); border-left: 3px solid var(--red); }
+.info-box.amber { background: var(--amber-bg); border-left: 3px solid var(--amber); }
+.info-box.green { background: var(--green-bg); border-left: 3px solid var(--green); }
+.info-box strong { font-weight: 700; }
+
+.checklist-section { background: var(--white); border: 1px solid var(--grey-200); padding: 24px; margin-bottom: 24px; }
+.checklist-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; color: var(--dark); }
+.checklist-item { display: flex; align-items: flex-start; gap: 10px; padding: 6px 0; font-size: 13px; }
+.checklist-bullet { color: var(--teal); font-weight: 700; flex-shrink: 0; }
+
+table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 16px 0; }
+th { font-family: 'Montserrat', sans-serif; text-align: left; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--grey-400); font-weight: 700; padding: 8px 12px; border-bottom: 2px solid var(--grey-200); }
+td { padding: 10px 12px; border-bottom: 1px solid var(--grey-100); }
+
+.footer { text-align: center; padding: 32px 0; font-size: 11px; color: var(--grey-400); font-family: 'Montserrat', sans-serif; letter-spacing: 1px; text-transform: uppercase; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <div class="header-badge">Internal Deployment Guide</div>
+  <h1>Clinic <span>Catalyst</span></h1>
+  <h1 style="font-size: clamp(16px, 2.5vw, 22px); margin-top: -4px;">Client Onboarding Playbook</h1>
+  <div class="header-sub">End-to-end deployment process from signed contract to live system</div>
+</div>
+
+<!-- WHAT WE NEED FROM THE CLIENT -->
+<div class="checklist-section">
+  <div class="checklist-title">What We Need From The Client (Onboarding Call)</div>
+  <div class="checklist-item"><span class="checklist-bullet">&square;</span> Business name, address, phone, email, website URL</div>
+  <div class="checklist-item"><span class="checklist-bullet">&square;</span> Logo (PNG, high res) + any brand colours/fonts they use</div>
+  <div class="checklist-item"><span class="checklist-bullet">&square;</span> Service menu with pricing (treatments, durations, costs)</div>
+  <div class="checklist-item"><span class="checklist-bullet">&square;</span> Team member names, roles, and availability (who does what, when)</div>
+  <div class="checklist-item"><span class="checklist-bullet">&square;</span> Current booking system (Cliniko, Phorest, Timely, Fresha, etc.)</div>
+  <div class="checklist-item"><span class="checklist-bullet">&square;</span> Facebook page admin access (for ads)</div>
+  <div class="checklist-item"><span class="checklist-bullet">&square;</span> Instagram account access (for DM automation)</div>
+  <div class="checklist-item"><span class="checklist-bullet">&square;</span> Google Business Profile access (for GEO - Package 2+)</div>
+  <div class="checklist-item"><span class="checklist-bullet">&square;</span> Any current ad accounts / Meta Business Suite access</div>
+  <div class="checklist-item"><span class="checklist-bullet">&square;</span> Key offer or promotion they want to lead with (e.g. "$199 Venus Viva")</div>
+  <div class="checklist-item"><span class="checklist-bullet">&square;</span> Any compliance notes (TGA restrictions, Schedule 4 products they use)</div>
+  <div class="checklist-item"><span class="checklist-bullet">&square;</span> Preferred greeting style / tone (clinical vs warm vs luxury)</div>
+</div>
+
+<!-- PACKAGES REFERENCE -->
+<div class="checklist-section">
+  <div class="checklist-title">Package Reference</div>
+  <table>
+    <thead>
+      <tr><th>Included</th><th>Essentials $1,497/mo</th><th>Pro $2,497/mo</th><th>Partner $2,997/mo</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Facebook / Instagram Ads</strong></td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+      <tr><td><strong>Aria AI Instant Calling</strong></td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+      <tr><td><strong>Automated DM & Chat Replies</strong></td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+      <tr><td><strong>Website Chat Widget</strong></td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+      <tr><td><strong>CRM & Calendar Booking</strong></td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+      <tr><td><strong>SMS & Email Nurture</strong></td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+      <tr><td><strong>Google Ads Management</strong></td><td>-</td><td>Yes</td><td>Yes</td></tr>
+      <tr><td><strong>GEO & Local Search Setup</strong></td><td>-</td><td>Yes</td><td>Yes</td></tr>
+      <tr><td><strong>Dedicated Support Team</strong></td><td>-</td><td>-</td><td>Yes</td></tr>
+      <tr><td><strong>Monthly Performance Reports</strong></td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+    </tbody>
+  </table>
+  <div class="info-box teal">
+    <strong>Conference bonus:</strong> Setup fee waived for Aesthetics Business Masters attendees. Standard setup: $2,997 - $4,997. All packages month-to-month, no lock-in. $200 deposit to hold spot.
+  </div>
+</div>
+
+<!-- PHASE 1 -->
+<div class="phase">
+  <div class="phase-header">
+    <div class="phase-number">01</div>
+    <div>
+      <div class="phase-title">Onboarding & Access</div>
+    </div>
+    <div class="phase-timeline">Day 1-2</div>
+  </div>
+
+  <div class="step">
+    <div class="step-row">
+      <div class="step-check">&check;</div>
+      <div class="step-content">
+        <div class="step-title">Onboarding call - collect all access and info</div>
+        <div class="step-desc">Walk through the checklist above. Get all logins, brand assets, service menus, team details. Screen share and collect what we can live on the call. Record the call.</div>
+        <span class="step-owner us">Us</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-row">
+      <div class="step-check">&check;</div>
+      <div class="step-content">
+        <div class="step-title">Create GHL sub-account for the clinic</div>
+        <div class="step-desc">Set up their CRM workspace. Import contacts if they have an existing list. Configure business details, timezone, and branding.</div>
+        <span class="step-owner us">Us</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-row">
+      <div class="step-check">&check;</div>
+      <div class="step-content">
+        <div class="step-title">Client sends remaining assets within 48 hours</div>
+        <div class="step-desc">Anything we couldn't collect on the call - logo files, team headshots, detailed pricing sheets, Facebook admin invites.</div>
+        <span class="step-owner client">Client</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PHASE 2 -->
+<div class="phase">
+  <div class="phase-header">
+    <div class="phase-number">02</div>
+    <div>
+      <div class="phase-title">Aria Voice Agent Build</div>
+    </div>
+    <div class="phase-timeline">Day 2-4</div>
+  </div>
+
+  <div class="step">
+    <div class="step-row">
+      <div class="step-check">&check;</div>
+      <div class="step-content">
+        <div class="step-title">Build clinic knowledge base</div>
+        <div class="step-desc">Create the knowledge document from their service menu, pricing, team bios, FAQs, opening hours, policies. This is what Aria knows about the clinic.</div>
+        <span class="step-owner us">Us</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-row">
+      <div class="step-check">&check;</div>
+      <div class="step-content">
+        <div class="step-title">Deploy Aria voice agent</div>
+        <div class="step-desc">Clone from working template. Swap clinic name, services, team, greeting, offer. Configure voice (Becca default, Australian). Connect to GHL calendar for real-time availability checks and booking.</div>
+        <span class="step-owner us">Us</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-row">
+      <div class="step-check">&check;</div>
+      <div class="step-content">
+        <div class="step-title">Configure GHL calendar and booking</div>
+        <div class="step-desc">Set up appointment types matching their services. Map practitioner availability. Connect booking confirmation emails and SMS reminders.</div>
+        <span class="step-owner us">Us</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-row">
+      <div class="step-check">&check;</div>
+      <div class="step-content">
+        <div class="step-title">Connect phone number</div>
+        <div class="step-desc">Assign dedicated phone number to Aria. Configure inbound and outbound calling. Test call flow end-to-end: ring > Aria answers > qualifies > checks availability > books.</div>
+        <span class="step-owner us">Us</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-row">
+      <div class="step-check">&check;</div>
+      <div class="step-content">
+        <div class="step-title">TGA compliance check</div>
+        <div class="step-desc">Verify Aria never names Schedule 4 products out loud. Test edge cases - "do you do Botox?" should redirect to consultation without naming the product. Review all prompts.</div>
+        <span class="step-owner us">Us</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-box red">
+    <strong>Critical:</strong> Test 5+ inbound calls and 3+ outbound calls before going live. Verify Aria books into the correct calendar, sends confirmation, and handles "I need to check with my partner" gracefully. Never go live without end-to-end testing.
+  </div>
+</div>
+
+<!-- PHASE 3 -->
+<div class="phase">
+  <div class="phase-header">
+    <div class="phase-number">03</div>
+    <div>
+      <div class="phase-title">Ads & Lead Generation</div>
+    </div>
+    <div class="phase-timeline">Day 3-5</div>
+  </div>
+
+  <div class="step">
+    <div class="step-row">
+      <div class="step-check">&check;</div>
+      <div class="step-content">
+        <div class="step-title">Set up Meta Ads account</div>
+        <div class="step-desc">Connect Facebook page, configure pixel, create custom audiences. Set up lead form or landing page for the hero offer. Alicia handles creative and targeting strategy.</div>
+        <span class="step-owner us">Us</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-row">
+      <div class="step-check">&check;</div>
+      <div class="step-content">
+        <div class="step-title">Build ad creatives</div>
+        <div class="step-desc">3-5 ad variations (image + video) featuring the hero offer. Use clinic's own imagery where possible. Copy focused on the outcome, not the treatment name.</div>
+        <span class="step-owner us">Us</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-row">
+      <div class="step-check">&check;</div>
+      <div class="step-content">
+        <div class="step-title">Configure lead-to-call workflow</div>
+        <div class="step-desc">When a lead submits via ad form: GHL captures contact > triggers Aria outbound call within 60 seconds > Aria qualifies and books. No human required.</div>
+        <span class="step-owner us">Us</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-row">
+      <div class="step-check">&check;</div>
+      <div class="step-content">
+        <div class="step-title">Google Ads setup (Pro + Partner only)</div>
+        <div class="step-desc">Search campaigns for high-intent keywords ("[treatment] near me", "[clinic type] [suburb]"). Landing page connected to GHL for lead capture.</div>
+        <span class="step-owner us">Us</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-row">
+      <div class="step-check">&check;</div>
+      <div class="step-content">
+        <div class="step-title">GEO & local search optimisation (Pro + Partner only)</div>
+        <div class="step-desc">Google Business Profile audit. Keyword-optimised description, services, Q&A. Review response templates. Local citation check.</div>
+        <span class="step-owner us">Us</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PHASE 4 -->
+<div class="phase">
+  <div class="phase-header">
+    <div class="phase-number">04</div>
+    <div>
+      <div class="phase-title">Automation & Nurture</div>
+    </div>
+    <div class="phase-timeline">Day 4-6</div>
+  </div>
+
+  <div class="step">
+    <div class="step-row">
+      <div class="step-check">&check;</div>
+      <div class="step-content">
+        <div class="step-title">Website chat widget installed</div>
+        <div class="step-desc">Embed Aria chat widget on clinic's website. Matches their brand colours. Handles FAQs, service questions, and routes to booking.</div>
+        <span class="step-owner us">Us</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-row">
+      <div class="step-check">&check;</div>
+      <div class="step-content">
+        <div class="step-title">DM automation configured</div>
+        <div class="step-desc">Instagram and Facebook DM auto-replies. Keyword triggers for common questions. Routes booking requests to Aria or direct calendar link.</div>
+        <span class="step-owner us">Us</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-row">
+      <div class="step-check">&check;</div>
+      <div class="step-content">
+        <div class="step-title">SMS & email nurture sequences built</div>
+        <div class="step-desc">Post-enquiry: 3-touch follow-up sequence (immediate, 24hr, 72hr). Post-booking: confirmation + reminder + prep instructions. No-show: re-engagement sequence.</div>
+        <span class="step-owner us">Us</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-row">
+      <div class="step-check">&check;</div>
+      <div class="step-content">
+        <div class="step-title">Missed call recovery</div>
+        <div class="step-desc">If Aria can't reach a lead by phone, automatic SMS with booking link is sent. "Hi [name], we just tried to call you about your enquiry. Book a time that suits you: [link]"</div>
+        <span class="step-owner us">Us</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PHASE 5 -->
+<div class="phase">
+  <div class="phase-header">
+    <div class="phase-number">05</div>
+    <div>
+      <div class="phase-title">Go Live & Verify</div>
+    </div>
+    <div class="phase-timeline">Day 7</div>
+  </div>
+
+  <div class="step">
+    <div class="step-row">
+      <div class="step-check">&check;</div>
+      <div class="step-content">
+        <div class="step-title">Full end-to-end test</div>
+        <div class="step-desc">Run the complete flow: ad impression > lead form > Aria calls in under 60 seconds > books appointment > confirmation email + SMS sent > shows in GHL calendar. Test on mobile and desktop.</div>
+        <span class="step-owner us">Us</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-row">
+      <div class="step-check">&check;</div>
+      <div class="step-content">
+        <div class="step-title">Client walkthrough call</div>
+        <div class="step-desc">Show the client their live dashboard. Walk through how leads appear, how Aria handles calls, where bookings show up. Answer questions. Confirm they know where to check performance.</div>
+        <span class="step-owner us">Us</span> <span class="step-owner client">Client</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-row">
+      <div class="step-check">&check;</div>
+      <div class="step-content">
+        <div class="step-title">Ads go live</div>
+        <div class="step-desc">Launch campaigns. Monitor first 24 hours closely. Verify lead flow, Aria call quality, and booking accuracy. Adjust targeting or creative if needed.</div>
+        <span class="step-owner us">Us</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-box green">
+    <strong>Go-live criteria:</strong> All 5 phases complete. Minimum 5 test calls passed. Aria booking into correct calendar. Confirmation emails/SMS sending. Ads approved by Meta. Client has seen their dashboard.
+  </div>
+</div>
+
+<!-- PHASE 6 -->
+<div class="phase">
+  <div class="phase-header">
+    <div class="phase-number">06</div>
+    <div>
+      <div class="phase-title">Ongoing Management</div>
+    </div>
+    <div class="phase-timeline">Monthly</div>
+  </div>
+
+  <div class="step">
+    <div class="step-row">
+      <div class="step-check">&check;</div>
+      <div class="step-content">
+        <div class="step-title">Monthly performance report</div>
+        <div class="step-desc">Leads generated, calls made, bookings converted, ad spend, cost per lead, cost per booking. Clear dashboard the client can understand.</div>
+        <span class="step-owner us">Us</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-row">
+      <div class="step-check">&check;</div>
+      <div class="step-content">
+        <div class="step-title">Ad optimisation</div>
+        <div class="step-desc">Review creative performance. Kill underperformers, scale winners. Refresh creative monthly. Adjust targeting based on booking data.</div>
+        <span class="step-owner us">Us</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-row">
+      <div class="step-check">&check;</div>
+      <div class="step-content">
+        <div class="step-title">Aria knowledge updates</div>
+        <div class="step-desc">New treatments, pricing changes, team changes, seasonal offers - update Aria's knowledge base so she's always current.</div>
+        <span class="step-owner us">Us</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-row">
+      <div class="step-check">&check;</div>
+      <div class="step-content">
+        <div class="step-title">Quarterly strategy review</div>
+        <div class="step-desc">What's working, what's not, what to try next. New offers, seasonal campaigns, upsell opportunities. Proactive, not reactive.</div>
+        <span class="step-owner us">Us</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DEPLOYMENT TIMELINE SUMMARY -->
+<div class="checklist-section">
+  <div class="checklist-title">Deployment Timeline Summary</div>
+  <table>
+    <thead>
+      <tr><th>Day</th><th>Phase</th><th>Outcome</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>1-2</strong></td><td>Onboarding & Access</td><td>All info collected, GHL sub-account live</td></tr>
+      <tr><td><strong>2-4</strong></td><td>Aria Voice Agent</td><td>Aria answering calls, booking into calendar</td></tr>
+      <tr><td><strong>3-5</strong></td><td>Ads & Lead Gen</td><td>Ad campaigns built, lead-to-call workflow live</td></tr>
+      <tr><td><strong>4-6</strong></td><td>Automation & Nurture</td><td>Chat widget, DMs, email/SMS sequences running</td></tr>
+      <tr><td><strong>7</strong></td><td>Go Live</td><td>Full system tested, client walked through, ads launched</td></tr>
+    </tbody>
+  </table>
+  <div class="info-box teal">
+    <strong>7 days from onboarding call to live system.</strong> Client's only job is to show up to the onboarding call with their info and hand over access. We do everything else.
+  </div>
+</div>
+
+<div class="footer">
+  Clinic Catalyst - Internal Deployment Playbook v1<br>
+  Kelly Wotherspoon + Alicia Hagen
+</div>
+
+</div>
+
+<script>
+document.querySelectorAll('.step-check').forEach(function(el) {
+  el.addEventListener('click', function() {
+    this.classList.toggle('checked');
+    var step = this.closest('.step');
+    if (this.classList.contains('checked')) {
+      step.style.opacity = '0.5';
+    } else {
+      step.style.opacity = '1';
+    }
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome to Clinic Catalyst - Your Onboarding Guide</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --dark: #0A2A28;
+  --dark-mid: #0F3634;
+  --teal: #00D4BC;
+  --teal-mid: #00B4A0;
+  --teal-dark: #007A6E;
+  --teal-bg: rgba(0,212,188,0.06);
+  --teal-border: rgba(0,212,188,0.2);
+  --white: #FFFFFF;
+  --grey-50: #F8FAFA;
+  --grey-100: #EEF2F2;
+  --grey-200: #D5DEDE;
+  --grey-400: #8A9B9A;
+  --grey-600: #5A6D6C;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Open Sans', sans-serif; background: var(--grey-50); color: var(--dark); line-height: 1.7; }
+.container { max-width: 800px; margin: 0 auto; padding: 40px 24px; }
+
+/* HEADER */
+.header { background: var(--dark); padding: 48px 40px; text-align: center; position: relative; overflow: hidden; }
+.header::before { content: ''; position: absolute; inset: 0; opacity: 0.12; background-image: radial-gradient(circle, var(--teal) 1px, transparent 1px); background-size: 50px 50px; }
+.header-logo { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 800; letter-spacing: 5px; text-transform: uppercase; color: var(--teal); margin-bottom: 16px; position: relative; z-index: 1; }
+.header h1 { font-family: 'Montserrat', sans-serif; font-size: clamp(22px, 3.5vw, 32px); font-weight: 800; text-transform: uppercase; color: var(--white); letter-spacing: 1px; position: relative; z-index: 1; margin-bottom: 8px; }
+.header h1 span { color: var(--teal); }
+.header-sub { font-size: 14px; color: rgba(255,255,255,0.5); font-weight: 300; position: relative; z-index: 1; }
+
+/* WELCOME */
+.welcome { background: var(--white); border: 1px solid var(--grey-200); padding: 32px; margin: -24px 24px 32px; position: relative; z-index: 2; }
+.welcome h2 { font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--dark); margin-bottom: 12px; }
+.welcome p { font-size: 14px; color: var(--grey-600); line-height: 1.8; margin-bottom: 10px; }
+
+/* SECTION */
+.section { margin-bottom: 32px; }
+.section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+.section-num { font-family: 'Montserrat', sans-serif; font-size: 32px; font-weight: 900; color: var(--teal); line-height: 1; }
+.section-title { font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+
+/* CARD */
+.card { background: var(--white); border: 1px solid var(--grey-200); padding: 24px; margin-bottom: 12px; }
+.card-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: var(--dark); margin-bottom: 8px; }
+.card p { font-size: 13px; color: var(--grey-600); line-height: 1.7; }
+
+/* CHECKLIST */
+.checklist { background: var(--white); border: 1px solid var(--grey-200); padding: 28px; margin-bottom: 16px; }
+.checklist-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; color: var(--dark); }
+.checklist-item { display: flex; align-items: flex-start; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--grey-100); font-size: 13px; color: var(--grey-600); line-height: 1.6; }
+.checklist-item:last-child { border-bottom: none; }
+.check-box { width: 20px; height: 20px; border: 2px solid var(--grey-200); flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.15s; font-size: 12px; color: var(--teal); }
+.check-box:hover { border-color: var(--teal); }
+.check-box.checked { background: var(--teal); border-color: var(--teal); color: var(--white); }
+
+/* TIMELINE */
+.timeline { background: var(--dark); padding: 32px; margin-bottom: 32px; position: relative; overflow: hidden; }
+.timeline::before { content: ''; position: absolute; inset: 0; opacity: 0.08; background-image: radial-gradient(circle, var(--teal) 1px, transparent 1px); background-size: 50px 50px; }
+.timeline-title { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--teal); margin-bottom: 20px; position: relative; z-index: 1; }
+.timeline-row { display: flex; align-items: center; gap: 16px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.06); position: relative; z-index: 1; }
+.timeline-row:last-child { border-bottom: none; }
+.timeline-day { font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 900; color: var(--teal); min-width: 70px; }
+.timeline-label { font-size: 13px; color: rgba(255,255,255,0.7); font-weight: 400; }
+.timeline-label strong { color: var(--white); font-weight: 600; }
+
+/* FEATURE BLOCKS */
+.feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+@media (max-width: 640px) { .feature-grid { grid-template-columns: 1fr; } }
+.feature { background: var(--white); border: 1px solid var(--grey-200); padding: 20px; }
+.feature-icon { font-size: 24px; margin-bottom: 8px; }
+.feature-name { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--dark); margin-bottom: 6px; }
+.feature-desc { font-size: 12px; color: var(--grey-600); line-height: 1.6; }
+
+/* CALLOUT */
+.callout { padding: 20px 24px; margin: 16px 0; font-size: 13px; line-height: 1.7; }
+.callout.teal { background: var(--teal-bg); border-left: 3px solid var(--teal); }
+.callout strong { font-weight: 700; }
+
+/* CONTACT */
+.contact-card { background: var(--dark); padding: 32px; text-align: center; margin-top: 32px; position: relative; overflow: hidden; }
+.contact-card::before { content: ''; position: absolute; inset: 0; opacity: 0.08; background-image: radial-gradient(circle, var(--teal) 1px, transparent 1px); background-size: 50px 50px; }
+.contact-label { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--teal); margin-bottom: 8px; position: relative; z-index: 1; }
+.contact-card h3 { font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 800; text-transform: uppercase; color: var(--white); position: relative; z-index: 1; margin-bottom: 16px; }
+.contact-detail { font-size: 13px; color: rgba(255,255,255,0.6); position: relative; z-index: 1; line-height: 1.8; }
+.contact-detail a { color: var(--teal); text-decoration: none; }
+
+.footer { text-align: center; padding: 24px 0; font-size: 10px; color: var(--grey-400); font-family: 'Montserrat', sans-serif; letter-spacing: 1px; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-logo">Clinic Catalyst</div>
+  <h1>Welcome to <span>Your Onboarding</span></h1>
+  <div class="header-sub">Everything you need to know about getting started</div>
+</div>
+
+<div class="container">
+
+<div class="welcome">
+  <h2>Here's what happens next</h2>
+  <p>You've made a smart decision. From here, we handle everything - ads, AI calling, automations, CRM, the lot. Your only job is to give us what we need on the onboarding call, and then focus on your patients.</p>
+  <p>This guide walks you through exactly what we need from you, what we're building, and what your first 7 days look like.</p>
+</div>
+
+<!-- WHAT WE NEED -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">01</div>
+    <div class="section-title">What We Need From You</div>
+  </div>
+
+  <div class="checklist">
+    <div class="checklist-title">Please have these ready for your onboarding call</div>
+    <div class="checklist-item"><div class="check-box"></div> Your logo file (PNG, high resolution)</div>
+    <div class="checklist-item"><div class="check-box"></div> Brand colours and fonts if you have them (or we'll match your existing website)</div>
+    <div class="checklist-item"><div class="check-box"></div> Full service menu with pricing - every treatment you offer and what it costs</div>
+    <div class="checklist-item"><div class="check-box"></div> Team member names, roles, and their working days/hours</div>
+    <div class="checklist-item"><div class="check-box"></div> Your lead offer - the treatment or deal you want to promote first</div>
+    <div class="checklist-item"><div class="check-box"></div> Facebook page admin access (we'll walk you through this on the call if needed)</div>
+    <div class="checklist-item"><div class="check-box"></div> Instagram login or Business Suite access</div>
+    <div class="checklist-item"><div class="check-box"></div> Google Business Profile access (Pro and Partner packages)</div>
+    <div class="checklist-item"><div class="check-box"></div> Your current booking system (Cliniko, Phorest, Timely, Fresha, or other)</div>
+    <div class="checklist-item"><div class="check-box"></div> Any compliance notes - treatments you can't advertise by name, restrictions</div>
+  </div>
+
+  <div class="callout teal">
+    <strong>Don't stress if you don't have everything.</strong> We'll walk through this together on the onboarding call and collect what we can live. Anything missing, you can send through within 48 hours.
+  </div>
+</div>
+
+<!-- WHAT WE BUILD -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">02</div>
+    <div class="section-title">What We're Building For You</div>
+  </div>
+
+  <div class="feature-grid">
+    <div class="feature">
+      <div class="feature-icon">&#9742;</div>
+      <div class="feature-name">AI Instant Calling</div>
+      <div class="feature-desc">Every lead gets a phone call within 60 seconds. Aria - your AI receptionist - qualifies the enquiry, answers questions about your services, checks your live availability, and books them straight into your calendar.</div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">&#9881;</div>
+      <div class="feature-name">CRM & Calendar</div>
+      <div class="feature-desc">Your own clinic dashboard where every lead, booking, and conversation lives in one place. See who enquired, who booked, who showed up, and who needs a follow-up - without chasing spreadsheets.</div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">&#128172;</div>
+      <div class="feature-name">Website Chat Widget</div>
+      <div class="feature-desc">A branded chat assistant on your website that answers patient questions, explains treatments, and routes to booking - 24/7. Handles the enquiries that come in at 10pm when your team has gone home.</div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">&#128241;</div>
+      <div class="feature-name">DM Automation</div>
+      <div class="feature-desc">Instagram and Facebook DMs answered automatically. When someone messages "how much is..." they get an instant, helpful response instead of waiting 3 days for your receptionist to see it.</div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">&#128227;</div>
+      <div class="feature-name">Ad Campaigns</div>
+      <div class="feature-desc">Done-for-you Facebook and Instagram ad campaigns targeting your ideal patients in your area. We write the copy, design the creative, manage the budget, and optimise weekly. You just approve.</div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">&#128231;</div>
+      <div class="feature-name">SMS & Email Follow-Up</div>
+      <div class="feature-desc">Automated sequences that nurture every lead. Immediate confirmation when they book. Reminders before their appointment. Re-engagement if they don't show. Nothing falls through the cracks.</div>
+    </div>
+  </div>
+
+  <div class="feature-grid">
+    <div class="feature">
+      <div class="feature-icon">&#127758;</div>
+      <div class="feature-name">Google Ads</div>
+      <div class="feature-desc">Search campaigns for people actively looking for your services - "[treatment] near me" and "[clinic type] [your suburb]". These are the highest intent leads you can get. <em>(Pro + Partner)</em></div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">&#128205;</div>
+      <div class="feature-name">GEO & Local Search</div>
+      <div class="feature-desc">Your Google Business Profile optimised so you show up when people search locally. Keywords, service descriptions, Q&A, and review response templates. Be the first result, not the fifth. <em>(Pro + Partner)</em></div>
+    </div>
+  </div>
+</div>
+
+<!-- TIMELINE -->
+<div class="timeline">
+  <div class="timeline-title">Your First 7 Days</div>
+  <div class="timeline-row">
+    <div class="timeline-day">Day 1</div>
+    <div class="timeline-label"><strong>Onboarding call</strong> - We collect everything we need and start building immediately</div>
+  </div>
+  <div class="timeline-row">
+    <div class="timeline-day">Day 2-3</div>
+    <div class="timeline-label"><strong>Aria goes live</strong> - Your AI receptionist is trained on your clinic, connected to your calendar, and answering calls</div>
+  </div>
+  <div class="timeline-row">
+    <div class="timeline-day">Day 3-5</div>
+    <div class="timeline-label"><strong>Ads built</strong> - Campaigns created, creatives designed, targeting configured. We send for your approval before going live</div>
+  </div>
+  <div class="timeline-row">
+    <div class="timeline-day">Day 4-6</div>
+    <div class="timeline-label"><strong>Automations wired</strong> - Chat widget installed, DMs configured, SMS/email sequences live, missed call recovery active</div>
+  </div>
+  <div class="timeline-row">
+    <div class="timeline-day">Day 7</div>
+    <div class="timeline-label"><strong>Go live</strong> - Full system tested end-to-end. We walk you through your dashboard. Ads launch. Leads start flowing.</div>
+  </div>
+</div>
+
+<!-- WHAT TO EXPECT -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">03</div>
+    <div class="section-title">What to Expect Going Forward</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Monthly Performance Reports</div>
+    <p>Every month you'll receive a clear report showing: leads generated, calls made, bookings converted, ad spend, cost per lead, and cost per booking. No jargon. Real numbers you can action.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">We Manage Everything</div>
+    <p>Ad creative, targeting, Aria's knowledge, nurture sequences, DM responses - we keep it all current. When you add a new treatment, change pricing, or hire a new practitioner, let us know and we update the system.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Month-to-Month, No Lock-In</div>
+    <p>Your package runs month-to-month. No contracts, no exit fees, no minimum terms. We keep you because the system works, not because you're locked in.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Your $200 Deposit</div>
+    <p>Your deposit is applied to your first month's invoice. It secures your onboarding spot and gets us started immediately.</p>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">04</div>
+    <div class="section-title">Common Questions</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Do I need to manage the ads myself?</div>
+    <p>No. We build, launch, and manage everything. You'll see the campaigns for approval, but we handle all the day-to-day optimisation.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Will patients know they're talking to AI?</div>
+    <p>Aria is designed to be conversational and natural. She knows your clinic, your services, and your team by name. Most patients don't notice - and more importantly, they book. The alternative is a missed call and a lost patient.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">What about ad spend?</div>
+    <p>Ad spend is separate from your monthly package. You control the budget directly - there are no minimums or maximums. We'll recommend a starting budget based on your area and goals during the onboarding call.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">What if I need to change my services or pricing?</div>
+    <p>Just let us know. We update Aria's knowledge, your ad creative, and your automations to reflect any changes. That's part of the ongoing management.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Can I cancel anytime?</div>
+    <p>Yes. Month-to-month, 30 days notice. No exit fees, no penalties. Your CRM data is yours.</p>
+  </div>
+</div>
+
+<!-- CLIENT ACTIONS -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">05</div>
+    <div class="section-title">What You Need To Do After The Call</div>
+  </div>
+
+  <div class="checklist">
+    <div class="checklist-title">Your Setup Checklist</div>
+    <div class="checklist-item"><div class="check-box"></div> Grant us admin access to your Facebook page (we'll walk you through this on the call)</div>
+    <div class="checklist-item"><div class="check-box"></div> Send Instagram login or add us to Business Suite</div>
+    <div class="checklist-item"><div class="check-box"></div> Share Google Business Profile access (Pro + Partner)</div>
+    <div class="checklist-item"><div class="check-box"></div> Send your logo file (PNG, high resolution) if not already provided</div>
+    <div class="checklist-item"><div class="check-box"></div> Send any team headshots you'd like used in ads</div>
+    <div class="checklist-item"><div class="check-box"></div> Confirm your lead offer details and pricing</div>
+    <div class="checklist-item"><div class="check-box"></div> Review and approve ad creatives when we send them (within 24 hours please)</div>
+    <div class="checklist-item"><div class="check-box"></div> Add the chat widget code to your website (we'll send instructions or do it for you)</div>
+  </div>
+
+  <div class="callout teal">
+    <strong>Aim to complete these within 48 hours of the onboarding call.</strong> The faster we get access, the faster leads start flowing. Most clients are fully live within 7 days.
+  </div>
+</div>
+
+<!-- SUPPORT -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">06</div>
+    <div class="section-title">Getting Help</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Email Support</div>
+    <p>For questions about your system, ad performance, or anything else - email us at <strong>hello@cliniccatalyst.com.au</strong>. We respond within 24 hours on business days.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Urgent Issues</div>
+    <p>If something is broken or leads aren't coming through, email with "URGENT" in the subject line and we'll prioritise it. System issues that affect live patient enquiries are always treated as priority.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Monthly Check-In</div>
+    <p>You'll receive a monthly performance report with your numbers. If you're on the Partner package, you also get a monthly strategy call to review what's working and plan ahead.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Changes & Updates</div>
+    <p>New treatment? Price change? New team member? Just email us the details and we'll update everything - Aria, your ads, your automations. That's what we're here for.</p>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="contact-card">
+  <div class="contact-label">Your Team</div>
+  <h3>We're Here <span style="color: var(--teal);">For You</span></h3>
+  <div class="contact-detail">
+    <strong style="color: var(--white);">Kelly Wotherspoon</strong> - Systems & AI<br>
+    <strong style="color: var(--white);">Alicia Hagen</strong> - Ads & Strategy<br><br>
+    <a href="mailto:hello@cliniccatalyst.com.au">hello@cliniccatalyst.com.au</a>
+  </div>
+</div>
+
+<div class="footer">
+  Clinic Catalyst - We Don't Just Run Ads. We Fill Clinics.
+</div>
+
+</div>
+
+<script>
+document.querySelectorAll('.check-box').forEach(function(el) {
+  el.addEventListener('click', function() {
+    this.classList.toggle('checked');
+    if (this.classList.contains('checked')) {
+      this.textContent = '\u2713';
+    } else {
+      this.textContent = '';
+    }
+  });
+});
+</script>
+
+</body>
+</html>

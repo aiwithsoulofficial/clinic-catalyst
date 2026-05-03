@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clinic Catalyst - Onboarding Intake Form</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --dark: #0A2A28;
+  --teal: #00D4BC;
+  --teal-mid: #00B4A0;
+  --teal-dark: #007A6E;
+  --teal-bg: rgba(0,212,188,0.06);
+  --teal-border: rgba(0,212,188,0.2);
+  --white: #FFFFFF;
+  --grey-50: #F8FAFA;
+  --grey-100: #EEF2F2;
+  --grey-200: #D5DEDE;
+  --grey-400: #8A9B9A;
+  --grey-600: #5A6D6C;
+  --red: #E84040;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Open Sans', sans-serif; background: var(--grey-50); color: var(--dark); line-height: 1.7; }
+
+/* HEADER */
+.header { background: var(--dark); padding: 40px; text-align: center; position: relative; overflow: hidden; }
+.header::before { content: ''; position: absolute; inset: 0; opacity: 0.12; background-image: radial-gradient(circle, var(--teal) 1px, transparent 1px); background-size: 50px 50px; }
+.header-logo { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 800; letter-spacing: 5px; text-transform: uppercase; color: var(--teal); margin-bottom: 12px; position: relative; z-index: 1; }
+.header h1 { font-family: 'Montserrat', sans-serif; font-size: clamp(20px, 3vw, 28px); font-weight: 800; text-transform: uppercase; color: var(--white); letter-spacing: 1px; position: relative; z-index: 1; margin-bottom: 8px; }
+.header h1 span { color: var(--teal); }
+.header-sub { font-size: 13px; color: rgba(255,255,255,0.5); font-weight: 300; position: relative; z-index: 1; max-width: 500px; margin: 0 auto; }
+
+.container { max-width: 700px; margin: 0 auto; padding: 32px 24px; }
+
+.intro { background: var(--white); border: 1px solid var(--grey-200); padding: 24px; margin-bottom: 24px; font-size: 13px; color: var(--grey-600); line-height: 1.8; }
+.intro strong { color: var(--dark); }
+
+/* FORM */
+.form-section { background: var(--white); border: 1px solid var(--grey-200); padding: 28px; margin-bottom: 20px; }
+.form-section-title { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--teal-dark); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid var(--teal); }
+
+.field { margin-bottom: 18px; }
+.field:last-child { margin-bottom: 0; }
+.field label { display: block; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--dark); margin-bottom: 6px; }
+.field .hint { font-size: 11px; color: var(--grey-400); font-weight: 400; text-transform: none; letter-spacing: 0; margin-bottom: 6px; display: block; }
+.field input, .field textarea, .field select {
+  width: 100%;
+  padding: 10px 14px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  border: 1.5px solid var(--grey-200);
+  background: var(--grey-50);
+  color: var(--dark);
+  transition: border-color 0.2s;
+  outline: none;
+}
+.field input:focus, .field textarea:focus, .field select:focus {
+  border-color: var(--teal);
+  background: var(--white);
+}
+.field textarea { min-height: 100px; resize: vertical; }
+.field select { cursor: pointer; }
+
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 540px) { .field-row { grid-template-columns: 1fr; } }
+
+.checkbox-group { display: flex; flex-direction: column; gap: 8px; }
+.checkbox-item { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--grey-600); cursor: pointer; }
+.checkbox-item input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--teal-mid); cursor: pointer; }
+
+.submit-section { text-align: center; padding: 32px 0; }
+.submit-btn {
+  display: inline-block;
+  background: var(--teal);
+  color: var(--dark);
+  padding: 14px 48px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.submit-btn:hover { background: #00ffec; }
+.submit-note { font-size: 11px; color: var(--grey-400); margin-top: 10px; }
+
+.footer { text-align: center; padding: 24px 0; font-size: 10px; color: var(--grey-400); font-family: 'Montserrat', sans-serif; letter-spacing: 1px; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-logo">Clinic Catalyst</div>
+  <h1>Onboarding <span>Intake Form</span></h1>
+  <div class="header-sub">Complete this before your onboarding call so we can hit the ground running</div>
+</div>
+
+<div class="container">
+
+<div class="intro">
+  <strong>This takes about 10 minutes.</strong> The more detail you give us here, the faster we can get your system live. We'll review everything before your onboarding call so we can walk in ready to build - not ready to ask questions.
+</div>
+
+<form action="https://formsubmit.co/aiwithsoulofficial@gmail.com" method="POST">
+<input type="hidden" name="_subject" value="Clinic Catalyst Intake - New Client">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_next" value="https://aiwithsoulofficial.github.io/clinic-catalyst/clinic-catalyst-client-onboarding.html">
+
+<!-- SECTION 1: BUSINESS DETAILS -->
+<div class="form-section">
+  <div class="form-section-title">Your Clinic</div>
+  <div class="field">
+    <label>Business name</label>
+    <input type="text" name="business_name" required>
+  </div>
+  <div class="field-row">
+    <div class="field">
+      <label>Your name</label>
+      <input type="text" name="contact_name" required>
+    </div>
+    <div class="field">
+      <label>Your role</label>
+      <input type="text" name="contact_role" placeholder="e.g. Owner, Practice Manager">
+    </div>
+  </div>
+  <div class="field-row">
+    <div class="field">
+      <label>Email</label>
+      <input type="email" name="email" required>
+    </div>
+    <div class="field">
+      <label>Phone</label>
+      <input type="tel" name="phone" required>
+    </div>
+  </div>
+  <div class="field">
+    <label>Clinic address</label>
+    <input type="text" name="address" placeholder="Full address including suburb and postcode">
+  </div>
+  <div class="field">
+    <label>Website URL</label>
+    <input type="url" name="website" placeholder="https://...">
+  </div>
+  <div class="field">
+    <label>Clinic type</label>
+    <select name="clinic_type">
+      <option value="">Select...</option>
+      <option>Aesthetics / Cosmetic</option>
+      <option>Dental</option>
+      <option>Medical / GP</option>
+      <option>Physiotherapy</option>
+      <option>Chiropractic</option>
+      <option>Psychology / Counselling</option>
+      <option>Veterinary</option>
+      <option>Optometry</option>
+      <option>Dermatology</option>
+      <option>Allied Health</option>
+      <option>Other</option>
+    </select>
+  </div>
+</div>
+
+<!-- SECTION 2: TEAM -->
+<div class="form-section">
+  <div class="form-section-title">Your Team</div>
+  <div class="field">
+    <label>How many practitioners / clinicians?</label>
+    <input type="number" name="team_size" placeholder="e.g. 4">
+  </div>
+  <div class="field">
+    <label>Team members and their roles</label>
+    <span class="hint">List each person, their role, and the days they work. E.g. "Dr Sarah Chen - Cosmetic Injector - Mon, Wed, Fri"</span>
+    <textarea name="team_members" placeholder="Name - Role - Working Days&#10;Name - Role - Working Days&#10;Name - Role - Working Days"></textarea>
+  </div>
+  <div class="field">
+    <label>Opening hours</label>
+    <textarea name="opening_hours" rows="3" placeholder="e.g. Mon-Fri 9am-5pm, Sat 9am-1pm, Sun Closed"></textarea>
+  </div>
+</div>
+
+<!-- SECTION 3: SERVICES -->
+<div class="form-section">
+  <div class="form-section-title">Services & Pricing</div>
+  <div class="field">
+    <label>Your services and pricing</label>
+    <span class="hint">List your main treatments/services with their prices. Include duration if relevant. You can also attach a price list on the onboarding call.</span>
+    <textarea name="services_pricing" rows="6" placeholder="e.g.&#10;Venus Viva Full Face - $398 (45 min)&#10;HydraFacial - $199 (60 min)&#10;Consultation - Free (30 min)"></textarea>
+  </div>
+  <div class="field">
+    <label>Lead offer - what do you want to promote first?</label>
+    <span class="hint">The treatment or special offer we'll build your first ad campaign around. What gets people in the door?</span>
+    <textarea name="lead_offer" rows="3" placeholder="e.g. $199 Venus Viva Full Face (normally $398) - introductory offer for new patients"></textarea>
+  </div>
+  <div class="field">
+    <label>Do you require a deposit for bookings?</label>
+    <span class="hint">If yes, how much and when is it taken?</span>
+    <input type="text" name="deposit_policy" placeholder="e.g. $50 deposit at time of booking, applied to treatment">
+  </div>
+</div>
+
+<!-- SECTION 4: CURRENT SYSTEMS -->
+<div class="form-section">
+  <div class="form-section-title">Your Current Systems</div>
+  <div class="field">
+    <label>Booking system</label>
+    <select name="booking_system">
+      <option value="">Select...</option>
+      <option>Cliniko</option>
+      <option>Phorest</option>
+      <option>Timely</option>
+      <option>Fresha</option>
+      <option>Mindbody</option>
+      <option>Square Appointments</option>
+      <option>Jane App</option>
+      <option>Paper/manual</option>
+      <option>None</option>
+      <option>Other</option>
+    </select>
+  </div>
+  <div class="field">
+    <label>Do you currently run ads?</label>
+    <select name="current_ads">
+      <option value="">Select...</option>
+      <option>Yes - managing ourselves</option>
+      <option>Yes - using an agency</option>
+      <option>Previously but stopped</option>
+      <option>Never</option>
+    </select>
+  </div>
+  <div class="field">
+    <label>Monthly ad budget you're comfortable with</label>
+    <span class="hint">This is separate from your Clinic Catalyst package. We'll recommend a starting point on the call.</span>
+    <select name="ad_budget">
+      <option value="">Select...</option>
+      <option>$500 - $1,000/month</option>
+      <option>$1,000 - $2,000/month</option>
+      <option>$2,000 - $5,000/month</option>
+      <option>$5,000+/month</option>
+      <option>Not sure yet</option>
+    </select>
+  </div>
+  <div class="field">
+    <label>How do you currently handle enquiries?</label>
+    <span class="hint">Phone, email, DMs, walk-ins - how do people reach you and who responds?</span>
+    <textarea name="current_enquiry_handling" rows="3" placeholder="e.g. Receptionist answers phone during business hours, DMs often go unanswered, after-hours calls go to voicemail"></textarea>
+  </div>
+</div>
+
+<!-- SECTION 5: ACCESS -->
+<div class="form-section">
+  <div class="form-section-title">Access We'll Need</div>
+  <div class="field">
+    <label>Facebook page URL</label>
+    <input type="url" name="facebook_url" placeholder="https://facebook.com/...">
+  </div>
+  <div class="field">
+    <label>Instagram handle</label>
+    <input type="text" name="instagram" placeholder="@yourclinic">
+  </div>
+  <div class="field">
+    <label>Google Business Profile</label>
+    <span class="hint">Search your business on Google - is your listing claimed and up to date?</span>
+    <select name="google_business">
+      <option value="">Select...</option>
+      <option>Yes - claimed and managed by us</option>
+      <option>Yes - but not actively managed</option>
+      <option>Not sure</option>
+      <option>No listing</option>
+    </select>
+  </div>
+</div>
+
+<!-- SECTION 6: COMPLIANCE -->
+<div class="form-section">
+  <div class="form-section-title">Compliance</div>
+  <div class="field">
+    <label>Are there any treatments or products you cannot advertise by name?</label>
+    <span class="hint">E.g. Schedule 4 products (Botox, Dysport, etc.) cannot be named in advertising under TGA regulations. We handle this automatically - just let us know what applies to you.</span>
+    <textarea name="compliance_notes" rows="3" placeholder="e.g. We use Botox and Juvederm but can't name them in ads"></textarea>
+  </div>
+</div>
+
+<!-- SECTION 7: GOALS -->
+<div class="form-section">
+  <div class="form-section-title">Your Goals</div>
+  <div class="field">
+    <label>How many new patients per month are you targeting?</label>
+    <input type="text" name="patient_target" placeholder="e.g. 20-30 new patients/month">
+  </div>
+  <div class="field">
+    <label>What's your biggest frustration right now?</label>
+    <textarea name="biggest_frustration" rows="3" placeholder="e.g. We get enquiries but can't respond fast enough, people book somewhere else"></textarea>
+  </div>
+  <div class="field">
+    <label>Anything else we should know?</label>
+    <textarea name="anything_else" rows="3" placeholder="Seasonal promotions, upcoming events, anything relevant..."></textarea>
+  </div>
+</div>
+
+<!-- SECTION 8: PACKAGE -->
+<div class="form-section">
+  <div class="form-section-title">Your Package</div>
+  <div class="field">
+    <label>Which package are you on?</label>
+    <select name="package" required>
+      <option value="">Select...</option>
+      <option>Essentials - $1,497/mo</option>
+      <option>Pro - $2,497/mo</option>
+      <option>Partner - $2,997/mo</option>
+      <option>Not sure yet - discuss on call</option>
+    </select>
+  </div>
+</div>
+
+<div class="submit-section">
+  <button type="submit" class="submit-btn">Submit Intake Form</button>
+  <div class="submit-note">We'll review this before your onboarding call. You don't need to have everything perfect - we'll fill in the gaps together.</div>
+</div>
+
+</form>
+
+<div class="footer">
+  Clinic Catalyst - We Don't Just Run Ads. We Fill Clinics.
+</div>
+
+</div>
+</body>
+</html>
