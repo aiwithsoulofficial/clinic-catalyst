@@ -166,7 +166,40 @@ body { font-family: 'Open Sans', sans-serif; background: var(--grey-50); color: 
   </div>
 </div>
 
-<!-- SECTION 2: TEAM -->
+<!-- SECTION 2: BRAND -->
+<div class="form-section">
+  <div class="form-section-title">Your Brand</div>
+  <div class="field">
+    <label>Do you have a brand guide or style document?</label>
+    <span class="hint">A document that covers your logo, colours, fonts, tone of voice, and visual style. If you don't have one, we'll create one for you as part of onboarding.</span>
+    <select name="has_brand_guide">
+      <option value="">Select...</option>
+      <option>Yes - we have a brand guide</option>
+      <option>We have a logo and colours but no formal guide</option>
+      <option>No - we need brand development</option>
+    </select>
+  </div>
+  <div class="field">
+    <label>Tick what you currently have</label>
+    <div class="checkbox-group">
+      <label class="checkbox-item"><input type="checkbox" name="brand_logo" value="yes"> Logo (high resolution PNG or vector)</label>
+      <label class="checkbox-item"><input type="checkbox" name="brand_colours" value="yes"> Brand colours (hex codes or colour palette)</label>
+      <label class="checkbox-item"><input type="checkbox" name="brand_fonts" value="yes"> Brand fonts / typography</label>
+      <label class="checkbox-item"><input type="checkbox" name="brand_voice" value="yes"> Brand voice / tone of voice guidelines</label>
+      <label class="checkbox-item"><input type="checkbox" name="brand_photos" value="yes"> Professional clinic photos</label>
+      <label class="checkbox-item"><input type="checkbox" name="brand_team_photos" value="yes"> Professional team headshots</label>
+      <label class="checkbox-item"><input type="checkbox" name="brand_tagline" value="yes"> Tagline or positioning statement</label>
+      <label class="checkbox-item"><input type="checkbox" name="brand_templates" value="yes"> Social media templates or brand assets</label>
+    </div>
+  </div>
+  <div class="field">
+    <label>How would you describe your clinic's personality?</label>
+    <span class="hint">This helps us match your ads and AI assistant to your vibe. E.g. "luxury and premium", "warm and approachable", "clinical and professional", "modern and edgy"</span>
+    <input type="text" name="brand_personality" placeholder="e.g. Warm and premium, clinical but approachable">
+  </div>
+</div>
+
+<!-- SECTION 3: TEAM -->
 <div class="form-section">
   <div class="form-section-title">Your Team</div>
   <div class="field">
