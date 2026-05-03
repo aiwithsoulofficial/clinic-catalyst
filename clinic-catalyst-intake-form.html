@@ -211,6 +211,7 @@ body { font-family: 'Open Sans', sans-serif; background: var(--grey-50); color: 
     <label>Booking system</label>
     <select name="booking_system">
       <option value="">Select...</option>
+      <option>GoHighLevel (GHL)</option>
       <option>Cliniko</option>
       <option>Phorest</option>
       <option>Timely</option>
@@ -218,6 +219,8 @@ body { font-family: 'Open Sans', sans-serif; background: var(--grey-50); color: 
       <option>Mindbody</option>
       <option>Square Appointments</option>
       <option>Jane App</option>
+      <option>Acuity</option>
+      <option>Calendly</option>
       <option>Paper/manual</option>
       <option>None</option>
       <option>Other</option>
@@ -256,6 +259,86 @@ body { font-family: 'Open Sans', sans-serif; background: var(--grey-50); color: 
 <div class="form-section">
   <div class="form-section-title">Access We'll Need</div>
   <div class="field">
+    <span class="hint" style="margin-bottom: 12px; display: block;">We need access to your systems to build and connect everything. Tick what you currently have - we'll collect logins and passwords on the onboarding call (screen share, secure).</span>
+  </div>
+
+  <div class="field">
+    <label>Social Media</label>
+    <div class="checkbox-group">
+      <label class="checkbox-item"><input type="checkbox" name="access_facebook_page" value="yes"> Facebook Business Page</label>
+      <label class="checkbox-item"><input type="checkbox" name="access_facebook_ads" value="yes"> Facebook / Meta Ads Manager</label>
+      <label class="checkbox-item"><input type="checkbox" name="access_meta_suite" value="yes"> Meta Business Suite</label>
+      <label class="checkbox-item"><input type="checkbox" name="access_instagram" value="yes"> Instagram Business Account</label>
+      <label class="checkbox-item"><input type="checkbox" name="access_google_ads" value="yes"> Google Ads Account</label>
+      <label class="checkbox-item"><input type="checkbox" name="access_tiktok" value="yes"> TikTok Business Account</label>
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Website</label>
+    <div class="checkbox-group">
+      <label class="checkbox-item"><input type="checkbox" name="access_website_builder" value="yes"> Website builder login (Wix, Squarespace, WordPress, Shopify, etc.)</label>
+      <label class="checkbox-item"><input type="checkbox" name="access_hosting" value="yes"> Hosting / DNS access (GoDaddy, Crazy Domains, Cloudflare, etc.)</label>
+    </div>
+  </div>
+  <div class="field-row">
+    <div class="field">
+      <label>Website builder</label>
+      <input type="text" name="website_builder" placeholder="e.g. WordPress, Wix, Squarespace">
+    </div>
+    <div class="field">
+      <label>Hosting / domain provider</label>
+      <input type="text" name="hosting_provider" placeholder="e.g. GoDaddy, Crazy Domains">
+    </div>
+  </div>
+
+  <div class="field">
+    <label>CRM & Booking</label>
+    <div class="checkbox-group">
+      <label class="checkbox-item"><input type="checkbox" name="access_crm" value="yes"> CRM system (GoHighLevel, HubSpot, Salesforce, etc.)</label>
+      <label class="checkbox-item"><input type="checkbox" name="access_booking" value="yes"> Booking system (Cliniko, Phorest, Timely, Fresha, etc.)</label>
+      <label class="checkbox-item"><input type="checkbox" name="access_ghl" value="yes"> GoHighLevel account (if you already have one)</label>
+    </div>
+  </div>
+  <div class="field">
+    <label>CRM system (if not listed above)</label>
+    <input type="text" name="crm_system" placeholder="e.g. HubSpot, Salesforce, or 'None'">
+  </div>
+
+  <div class="field">
+    <label>Email</label>
+    <div class="checkbox-group">
+      <label class="checkbox-item"><input type="checkbox" name="access_email_marketing" value="yes"> Email marketing platform (Mailchimp, ActiveCampaign, etc.)</label>
+      <label class="checkbox-item"><input type="checkbox" name="access_business_email" value="yes"> Business email (e.g. info@yourclinic.com.au)</label>
+    </div>
+  </div>
+  <div class="field">
+    <label>Email marketing platform</label>
+    <input type="text" name="email_platform" placeholder="e.g. Mailchimp, ActiveCampaign, or 'None'">
+  </div>
+
+  <div class="field">
+    <label>Google</label>
+    <div class="checkbox-group">
+      <label class="checkbox-item"><input type="checkbox" name="access_gbp" value="yes"> Google Business Profile (claimed and verified)</label>
+      <label class="checkbox-item"><input type="checkbox" name="access_google_analytics" value="yes"> Google Analytics</label>
+      <label class="checkbox-item"><input type="checkbox" name="access_google_search_console" value="yes"> Google Search Console</label>
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Other Systems</label>
+    <div class="checkbox-group">
+      <label class="checkbox-item"><input type="checkbox" name="access_payment" value="yes"> Payment processor (Stripe, Square, Tyro, etc.)</label>
+      <label class="checkbox-item"><input type="checkbox" name="access_review" value="yes"> Review platform (RealSelf, RateMDs, etc.)</label>
+    </div>
+  </div>
+  <div class="field">
+    <label>Payment processor</label>
+    <input type="text" name="payment_processor" placeholder="e.g. Stripe, Square, Tyro, EFTPOS only">
+  </div>
+
+  <div class="field">
     <label>Facebook page URL</label>
     <input type="url" name="facebook_url" placeholder="https://facebook.com/...">
   </div>
@@ -264,15 +347,8 @@ body { font-family: 'Open Sans', sans-serif; background: var(--grey-50); color: 
     <input type="text" name="instagram" placeholder="@yourclinic">
   </div>
   <div class="field">
-    <label>Google Business Profile</label>
-    <span class="hint">Search your business on Google - is your listing claimed and up to date?</span>
-    <select name="google_business">
-      <option value="">Select...</option>
-      <option>Yes - claimed and managed by us</option>
-      <option>Yes - but not actively managed</option>
-      <option>Not sure</option>
-      <option>No listing</option>
-    </select>
+    <label>Anything else we'll need access to?</label>
+    <textarea name="other_access" rows="2" placeholder="e.g. Canva account, Dropbox, patient management system..."></textarea>
   </div>
 </div>
 
