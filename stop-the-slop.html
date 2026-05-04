@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stop the Slop - Clinic Catalyst</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #0A2A28;
+    --bg-dark: #061E1C;
+    --accent: #00D4BC;
+    --accent2: #00B4A0;
+    --red: #E84040;
+    --white: #FFFFFF;
+    --w80: rgba(255,255,255,0.8);
+    --w60: rgba(255,255,255,0.6);
+    --w40: rgba(255,255,255,0.4);
+    --w10: rgba(255,255,255,0.1);
+    --w05: rgba(255,255,255,0.05);
+    --accent-soft: rgba(0,212,188,0.08);
+    --accent-med: rgba(0,212,188,0.15);
+    --red-soft: rgba(232,64,64,0.1);
+  }
+  html { background: #000; }
+  body { font-family: 'Inter', sans-serif; color: var(--white); max-width: 800px; margin: 0 auto; background: var(--bg); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 48px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(160deg, #0A2A28 0%, #061E1C 60%, #0A2A28 100%);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(0,212,188,0.05) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .hero-content { position: relative; z-index: 1; }
+
+  .brand-tag {
+    display: inline-block;
+    padding: 8px 24px;
+    border: 2px solid var(--accent);
+    background: var(--accent-soft);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 48px;
+  }
+
+  .hero h1 {
+    font-size: 64px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    line-height: 1.05;
+    margin-bottom: 8px;
+  }
+
+  .hero h1 span { color: var(--red); }
+
+  .hero .subhead {
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--w80);
+    max-width: 560px;
+    margin: 24px auto 48px;
+    line-height: 1.7;
+  }
+
+  .divider { width: 60px; height: 3px; background: var(--red); margin: 24px auto; }
+
+  /* SECTIONS */
+  .section { padding: 60px 48px; border-top: 1px solid var(--w10); position: relative; }
+  .section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(0,212,188,0.03) 1px, transparent 1px);
+    background-size: 32px 32px;
+    pointer-events: none;
+  }
+  .section > * { position: relative; z-index: 1; }
+
+  .tag {
+    display: inline-block;
+    padding: 5px 14px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .tag.red { border-color: var(--red); color: var(--red); }
+
+  h2 {
+    font-size: 28px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+
+  p { font-weight: 300; line-height: 1.75; color: var(--w80); font-size: 16px; }
+  p + p { margin-top: 14px; }
+
+  /* SLOP LIST */
+  .slop-list { list-style: none; margin: 28px 0; }
+  .slop-list li {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--w05);
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--w80);
+    line-height: 1.6;
+  }
+  .slop-list li:last-child { border-bottom: none; }
+  .slop-list li::before {
+    content: '✗';
+    color: var(--red);
+    font-weight: 700;
+    font-size: 18px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* REAL LIST */
+  .real-list { list-style: none; margin: 28px 0; }
+  .real-list li {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--w05);
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--w80);
+    line-height: 1.6;
+  }
+  .real-list li:last-child { border-bottom: none; }
+  .real-list li::before {
+    content: '✓';
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 18px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* QUOTE */
+  .quote-block {
+    background: var(--red-soft);
+    border-left: 3px solid var(--red);
+    padding: 28px 32px;
+    margin: 32px 0;
+  }
+  .quote-block p {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  /* STAT ROW */
+  .stat-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 32px 0;
+  }
+  @media (max-width: 600px) { .stat-row { grid-template-columns: 1fr; } }
+  .stat-card {
+    padding: 24px;
+    border: 1px solid var(--w10);
+    background: var(--w05);
+    text-align: center;
+  }
+  .stat-card .stat-num {
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 8px;
+  }
+  .stat-card p { font-size: 14px; color: var(--w60); }
+
+  /* CTA */
+  .cta-section {
+    padding: 80px 48px;
+    text-align: center;
+    border-top: 3px solid var(--accent);
+    background: linear-gradient(160deg, #0A2A28 0%, #061E1C 100%);
+  }
+  .cta-btn {
+    display: inline-block;
+    padding: 20px 56px;
+    background: var(--accent);
+    color: var(--bg);
+    font-family: 'Inter', sans-serif;
+    font-size: 17px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-decoration: none;
+    margin-top: 32px;
+    transition: background 0.2s;
+  }
+  .cta-btn:hover { background: var(--accent2); }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="brand-tag">Clinic Catalyst</div>
+    <h1>Stop the<br><span>Slop</span></h1>
+    <div class="divider"></div>
+    <p class="subhead">The aesthetics industry is being flooded with AI-generated frameworks, copy-paste strategies, and ChatGPT slide decks. Your clients can feel it. Your results reflect it.</p>
+    <p style="font-size: 14px; color: var(--w40); margin-top: 0;">It's time to use AI to actually run your clinic - not just talk about it.</p>
+  </div>
+</div>
+
+<!-- WHAT SLOP LOOKS LIKE -->
+<div class="section">
+  <div class="tag red">The Problem</div>
+  <h2>YOU'VE SEEN IT EVERYWHERE</h2>
+  <div style="width: 60px; height: 3px; background: var(--red); margin: 16px 0 24px;"></div>
+  <p>Walk into any aesthetics conference, open any clinic owner's newsletter, scroll any industry feed. You'll see the same thing over and over - different faces, identical frameworks.</p>
+
+  <div class="quote-block">
+    <p>"Slow responses kill conversion. Follow up or lose the lead. Retention beats acquisition."</p>
+  </div>
+
+  <p>Sound familiar? It should. Every speaker has the same ChatGPT deck. Every consultant is selling the same 5-step framework. The content looks different on the surface. The strategy is the same underneath.</p>
+  <p>And your clinic is still answering DMs at 11pm.</p>
+
+  <ul class="slop-list" style="margin-top: 28px;">
+    <li>Generic AI content that sounds like everyone else in your market</li>
+    <li>Frameworks and strategies with no system behind them to execute</li>
+    <li>Advice to "respond faster" with no tool that actually does it for you</li>
+    <li>Slide decks about AI from people who've never deployed it in a real clinic</li>
+    <li>Homework. More homework. Always more homework.</li>
+  </ul>
+</div>
+
+<!-- THE SHIFT -->
+<div class="section">
+  <div class="tag">The Shift</div>
+  <h2>WHO IS ACTUALLY FINDING YOUR CLINIC</h2>
+  <div style="width: 60px; height: 3px; background: var(--accent); margin: 16px 0 24px;"></div>
+
+  <p>Your ideal patients - women 25 to 45 researching treatments - are no longer Googling first. They're asking ChatGPT, Perplexity, and Claude. The AI gives them an answer. Then they search for you.</p>
+  <p>If your clinic isn't showing up in AI search, you're invisible to the buyers who are most ready to spend.</p>
+
+  <div class="stat-row">
+    <div class="stat-card">
+      <span class="stat-num">357%</span>
+      <p>Growth in AI referral traffic year on year</p>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">4.4x</span>
+      <p>Higher conversion rate for visitors from AI search vs Google organic</p>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">58%</span>
+      <p>Of 18-29 year olds use ChatGPT regularly - your patient demographic</p>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">&lt;1 week</span>
+      <p>Time to first client from a properly GEO-optimised clinic website</p>
+    </div>
+  </div>
+
+  <p style="font-size: 14px; color: var(--w60); margin-top: 8px;">Source: Similarweb 2025 Generative AI Report, Metricus Shopify AI Conversion Study 2026, Medical Aesthetics AI Visibility Index 2026</p>
+</div>
+
+<!-- WHAT REAL LOOKS LIKE -->
+<div class="section">
+  <div class="tag">The Solution</div>
+  <h2>WHAT REAL AI LOOKS LIKE IN YOUR CLINIC</h2>
+  <div style="width: 60px; height: 3px; background: var(--accent); margin: 16px 0 24px;"></div>
+  <p>Not a framework. Not a prompt. Not homework. A system that runs while you sleep, while you treat, while you live your life.</p>
+
+  <ul class="real-list" style="margin-top: 28px;">
+    <li>Every enquiry answered in under 60 seconds - 24/7, including weekends and public holidays</li>
+    <li>A natural-sounding voice AI that calls leads back, qualifies them, and books them into your calendar</li>
+    <li>A follow-up sequence that runs automatically across calls, SMS and email - no manual effort</li>
+    <li>Mid-treatment drop-off caught before it happens - automated check-ins and drift alerts</li>
+    <li>Dormant clients re-engaged with personalised sequences at the right moment</li>
+    <li>Your clinic optimised to be found in AI search - not just Google</li>
+    <li>All of it built specifically for Australian aesthetic clinics - AHPRA and TGA compliant</li>
+  </ul>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="brand-tag" style="display: inline-block; margin-bottom: 32px;">Clinic Catalyst</div>
+  <h2 style="font-size: 36px; margin-bottom: 16px;">READY TO STOP THE SLOP<br>AND START SEEING RESULTS?</h2>
+  <div style="width: 60px; height: 3px; background: var(--accent); margin: 16px auto 24px;"></div>
+  <p style="font-size: 18px; color: var(--w80); max-width: 520px; margin: 0 auto 8px;">We build the system that does everything you just heard about today - done for you, running in your clinic within 2 weeks.</p>
+  <p style="font-size: 15px; color: var(--w60); max-width: 520px; margin: 0 auto;">Month-to-month. No lock-in. No homework.</p>
+  <a href="https://api.leadconnectorhq.com/widget/booking/do0ZgK74iDINuHn5WoKk" target="_blank" class="cta-btn">BOOK YOUR ONBOARDING CALL</a>
+  <p style="font-size: 13px; color: var(--w40); margin-top: 24px;">Alicia Hagen &amp; Kelly Wotherspoon &nbsp;|&nbsp; cliniccatalyst.com.au</p>
+</div>
+
+</body>
+</html>
