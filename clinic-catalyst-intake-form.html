@@ -106,11 +106,7 @@ body { font-family: 'Open Sans', sans-serif; background: var(--grey-50); color: 
   <strong>This takes about 10 minutes.</strong> The more detail you give us here, the faster we can get your system live. We'll review everything before your onboarding call so we can walk in ready to build - not ready to ask questions.
 </div>
 
-<form action="https://formsubmit.co/aiwithsoulofficial@gmail.com" method="POST">
-<input type="hidden" name="_subject" value="Clinic Catalyst Intake - New Client">
-<input type="hidden" name="_template" value="table">
-<input type="hidden" name="_captcha" value="false">
-<input type="hidden" name="_next" value="https://aiwithsoulofficial.github.io/clinic-catalyst/clinic-catalyst-client-onboarding.html">
+<form id="intake-form">
 
 <!-- SECTION 1: BUSINESS DETAILS -->
 <div class="form-section">
@@ -438,5 +434,126 @@ body { font-family: 'Open Sans', sans-serif; background: var(--grey-50); color: 
 </div>
 
 </div>
+
+<div id="success-overlay" style="display:none; position:fixed; inset:0; background:rgba(10,42,40,0.95); z-index:9999; justify-content:center; align-items:center;">
+  <div style="text-align:center; max-width:500px; padding:40px;">
+    <div style="font-size:48px; margin-bottom:20px;">&#10003;</div>
+    <h2 style="font-family:'Montserrat',sans-serif; color:#00D4BC; font-size:22px; font-weight:800; text-transform:uppercase; letter-spacing:2px; margin-bottom:16px;">Intake Received</h2>
+    <p style="color:rgba(255,255,255,0.7); font-size:14px; line-height:1.8;">We've got everything we need to prep for your onboarding call. Redirecting you to your setup guide now...</p>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+const SUPABASE_URL = 'https://jiquevvzrdavgqonvvug.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImppcXVldnZ6cmRhdmdxb252dnVnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE5NzIxNzIsImV4cCI6MjA4NzU0ODE3Mn0.e4mYjXj8TGTC0_UCm3QCKGSv8Cl-migIl7reYIKNcW4';
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+document.getElementById('intake-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = this.querySelector('.submit-btn');
+  const originalText = btn.textContent;
+  btn.textContent = 'SUBMITTING...';
+  btn.disabled = true;
+  btn.style.opacity = '0.6';
+
+  const f = new FormData(this);
+  const val = (name) => f.get(name) || null;
+  const checked = (name) => f.get(name) === 'yes';
+
+  const brandAssets = {
+    logo: checked('brand_logo'),
+    colours: checked('brand_colours'),
+    fonts: checked('brand_fonts'),
+    voice: checked('brand_voice'),
+    photos: checked('brand_photos'),
+    team_photos: checked('brand_team_photos'),
+    tagline: checked('brand_tagline'),
+    templates: checked('brand_templates')
+  };
+
+  const accessChecklist = {
+    facebook_page: checked('access_facebook_page'),
+    facebook_ads: checked('access_facebook_ads'),
+    meta_suite: checked('access_meta_suite'),
+    instagram: checked('access_instagram'),
+    google_ads: checked('access_google_ads'),
+    tiktok: checked('access_tiktok'),
+    website_builder: checked('access_website_builder'),
+    hosting: checked('access_hosting'),
+    crm: checked('access_crm'),
+    booking: checked('access_booking'),
+    ghl: checked('access_ghl'),
+    email_marketing: checked('access_email_marketing'),
+    business_email: checked('access_business_email'),
+    gbp: checked('access_gbp'),
+    google_analytics: checked('access_google_analytics'),
+    google_search_console: checked('access_google_search_console'),
+    payment: checked('access_payment'),
+    review: checked('access_review')
+  };
+
+  const row = {
+    business_name: val('business_name'),
+    contact_name: val('contact_name'),
+    contact_role: val('contact_role'),
+    email: val('email'),
+    phone: val('phone'),
+    address: val('address'),
+    website: val('website'),
+    clinic_type: val('clinic_type'),
+    has_brand_guide: val('has_brand_guide'),
+    brand_assets: brandAssets,
+    brand_personality: val('brand_personality'),
+    num_practitioners: val('team_size') ? parseInt(val('team_size')) : null,
+    team_members: val('team_members'),
+    opening_hours: val('opening_hours'),
+    services_pricing: val('services_pricing'),
+    top_treatments: val('services_pricing'),
+    lead_offer: val('lead_offer'),
+    deposit_policy: val('deposit_policy'),
+    booking_system: val('booking_system'),
+    current_ads: val('current_ads'),
+    running_ads: val('current_ads'),
+    ad_budget: val('ad_budget'),
+    how_handle_enquiries: val('current_enquiry_handling'),
+    current_enquiry_handling: val('current_enquiry_handling'),
+    access_checklist: accessChecklist,
+    website_platform: val('website_builder'),
+    hosting_provider: val('hosting_provider'),
+    crm_system: val('crm_system'),
+    email_marketing: val('email_platform'),
+    payment_processor: val('payment_processor'),
+    facebook_url: val('facebook_url'),
+    instagram_handle: val('instagram'),
+    other_access: val('other_access'),
+    compliance_notes: val('compliance_notes'),
+    patient_target: val('patient_target'),
+    monthly_leads: val('patient_target'),
+    biggest_frustration: val('biggest_frustration'),
+    anything_else: val('anything_else'),
+    package: val('package'),
+    status: 'new'
+  };
+
+  const { error } = await sb.from('clinic_catalyst_scoping').insert([row]);
+
+  if (error) {
+    console.error('Supabase error:', error);
+    btn.textContent = 'ERROR - TRY AGAIN';
+    btn.disabled = false;
+    btn.style.opacity = '1';
+    btn.style.background = '#E84040';
+    setTimeout(() => { btn.textContent = originalText; btn.style.background = ''; }, 3000);
+    return;
+  }
+
+  const overlay = document.getElementById('success-overlay');
+  overlay.style.display = 'flex';
+  setTimeout(() => {
+    window.location.href = 'https://aiwithsoulofficial.github.io/clinic-catalyst/clinic-catalyst-client-onboarding.html';
+  }, 2500);
+});
+</script>
 </body>
 </html>
