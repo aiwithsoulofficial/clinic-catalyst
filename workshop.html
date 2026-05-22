@@ -100,7 +100,7 @@ body{font-family:'Open Sans',sans-serif;background:var(--hero-dark);color:var(--
 .video-wrapper iframe{position:absolute;inset:0;width:100%;height:100%;border:none;}
 .video-thumb{position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:center;background:rgba(10,42,40,.6);transition:opacity .3s;}
 .video-thumb:hover{background:rgba(10,42,40,.4);}
-.video-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1;}
+.video-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;z-index:-1;}
 .play-btn{width:72px;height:72px;background:var(--teal-bright);border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:3;transition:transform .2s;}
 .play-btn:hover{transform:scale(1.1);}
 .play-btn::after{content:'';display:block;width:0;height:0;border-top:14px solid transparent;border-bottom:14px solid transparent;border-left:22px solid var(--hero-dark);margin-left:4px;}
@@ -194,11 +194,15 @@ footer p{font-size:.65rem;color:rgba(255,255,255,.15);letter-spacing:.06em;text-
 /* ANIMATIONS */
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
 
-/* BONUS STATS */
-.bonus-stats{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.5rem;}
-.bonus-stat-box{background:var(--white);border:1px solid var(--border);padding:1rem 1.5rem;text-align:center;flex:1;min-width:120px;max-width:180px;}
-.bonus-stat-num{font-family:'Montserrat',sans-serif;font-size:1.8rem;font-weight:900;color:var(--teal-dark);}
-.bonus-stat-label{font-size:.72rem;color:var(--text-light);text-transform:uppercase;letter-spacing:.08em;}
+/* SKILL SESSIONS */
+.skill-session{margin-bottom:2rem;}
+.skill-session:last-child{margin-bottom:0;}
+.skill-session-header{display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem;}
+.skill-session-num{font-family:'Montserrat',sans-serif;font-size:1.4rem;font-weight:900;color:var(--teal);line-height:1;opacity:.4;}
+.skill-session-title{font-family:'Montserrat',sans-serif;font-size:.85rem;font-weight:800;color:var(--text-dark);text-transform:uppercase;letter-spacing:.04em;}
+.skill-list{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;}
+.skill-item{background:var(--white);border:1px solid var(--border);border-left:3px solid var(--teal);padding:1rem 1.25rem;font-size:.8rem;color:var(--text-mid);font-weight:300;line-height:1.65;}
+.skill-item strong{color:var(--teal-dark);font-weight:700;display:block;margin-bottom:.2rem;font-size:.78rem;}
 
 /* RESPONSIVE - TABLET */
 @media(max-width:1024px){
@@ -268,10 +272,9 @@ footer p{font-size:.65rem;color:rgba(255,255,255,.15);letter-spacing:.06em;text-
 
   /* Skill library bonus */
   .section-light .body-text{font-size:.82rem;}
-  .bonus-stats{gap:.6rem;}
-  .bonus-stat-box{padding:.6rem .5rem;min-width:0;max-width:none;flex:1 1 30%;}
-  .bonus-stat-num{font-size:1.3rem;}
-  .bonus-stat-label{font-size:.55rem;letter-spacing:.04em;line-height:1.3;}
+  .skill-list{grid-template-columns:1fr;}
+  .skill-item{padding:.85rem 1rem;font-size:.78rem;}
+  .skill-session{margin-bottom:1.5rem;}
 
   /* Video section */
   .video-inner{padding:2.5rem 1.25rem 3rem;}
@@ -526,8 +529,8 @@ footer p{font-size:.65rem;color:rgba(255,255,255,.15);letter-spacing:.06em;text-
       </div>
       <div class="walkaway-card">
         <div class="walkaway-icon">&#129302;</div>
-        <h4>16 Free AI Skills</h4>
-        <p>Our clinic AI skill library - email agent, calendar management, branded carousels, SEO audits, hooks, proposals - 16 skills yours to keep.</p>
+        <h4>Your AI Toolkit</h4>
+        <p>Email agent, calendar manager, carousel builder, SEO auditor, hook generator, proposal writer, and more - installed and running before you leave.</p>
       </div>
       <div class="walkaway-card">
         <div class="walkaway-icon">&#128161;</div>
@@ -540,25 +543,68 @@ footer p{font-size:.65rem;color:rgba(255,255,255,.15);letter-spacing:.06em;text-
 
 <!-- BONUS: SKILL LIBRARY -->
 <section class="section-light">
-  <div class="inner" style="text-align:center;">
-    <div class="label" style="color:var(--teal-dark);">Included With Your Ticket</div>
-    <div class="section-title" style="color:var(--text-dark);">16 AI skills.<br><span>Yours to keep.</span></div>
-    <p class="body-text" style="margin:0 auto 2rem;">Every workshop attendee gets our full free-tier Clinic Skill Library - 16 AI skills built specifically for clinics. Email agents, calendar management, branded carousels, SEO audits, hook generators, proposal writers, and more. Install them in 15 minutes. Use them forever.</p>
-    <div class="bonus-stats">
-      <div class="bonus-stat-box">
-        <div class="bonus-stat-num">16</div>
-        <div class="bonus-stat-label">AI Skills</div>
+  <div class="inner">
+    <div style="text-align:center;">
+      <div class="label" style="color:var(--teal-dark);">Included With Your Ticket</div>
+      <div class="section-title" style="color:var(--text-dark);">Your AI toolkit.<br><span>Installed in the room.</span></div>
+      <p class="body-text" style="margin:0 auto 2.5rem;">We'll set these up with you across the 2 days. Each one runs a complete workflow inside your clinic - not prompts, not templates. Real tools you'll use every week.</p>
+    </div>
+
+    <!-- SESSION 1 -->
+    <div class="skill-session">
+      <div class="skill-session-header">
+        <div class="skill-session-num">01</div>
+        <div class="skill-session-title">Set Up Your Business Brain</div>
       </div>
-      <div class="bonus-stat-box">
-        <div class="bonus-stat-num">4</div>
-        <div class="bonus-stat-label">Categories</div>
-      </div>
-      <div class="bonus-stat-box">
-        <div class="bonus-stat-num">10+</div>
-        <div class="bonus-stat-label">Hours Saved Weekly</div>
+      <div class="skill-list">
+        <div class="skill-item"><strong>15-Minute Setup</strong> - Connect your email, calendar, and tools. Answer a few questions about your brand. Everything after this just works.</div>
+        <div class="skill-item"><strong>Capture Your Voice</strong> - We capture how you actually talk - your warmth, your phrases, the words you'd never use. Every email and post sounds like you.</div>
+        <div class="skill-item"><strong>Your Inbox, Handled</strong> - AI reads your emails, drafts replies in your voice, waits for you to approve. Saves 60-90 minutes every day.</div>
+        <div class="skill-item"><strong>No More Double-Bookings</strong> - Your calendar manages itself. Bookings, reminders, conflicts, optimal scheduling. No more "when are you free?" back-and-forth.</div>
       </div>
     </div>
-    <p style="font-size:.78rem;color:var(--text-light);font-weight:300;">Email handling, calendar management, content creation, SEO audits, proposal writing, pre-call briefs, and more. Built for clinics. Not generic templates.</p>
+
+    <!-- SESSION 2 -->
+    <div class="skill-session">
+      <div class="skill-session-header">
+        <div class="skill-session-num">02</div>
+        <div class="skill-session-title">Create Content That Converts</div>
+      </div>
+      <div class="skill-list">
+        <div class="skill-item"><strong>Branded Carousels in Seconds</strong> - Give it a topic and get a branded carousel ready to post. No more 2 hours in Canva for 5 slides.</div>
+        <div class="skill-item"><strong>Hooks That Stop the Scroll</strong> - Get 5 tested hooks scored on what makes people stop scrolling. Video, text, carousel - all covered.</div>
+        <div class="skill-item"><strong>Make It Sound Human</strong> - Catches every robotic AI phrase and rewrites it in your natural voice. Run it before you publish anything.</div>
+        <div class="skill-item"><strong>Know What's Working Before You Create</strong> - See what content performs in your niche. Trending formats, competitor patterns. Stop guessing.</div>
+      </div>
+    </div>
+
+    <!-- SESSION 3 -->
+    <div class="skill-session">
+      <div class="skill-session-header">
+        <div class="skill-session-num">03</div>
+        <div class="skill-session-title">Get Found Online</div>
+      </div>
+      <div class="skill-list">
+        <div class="skill-item"><strong>Know What Your Clients Search For</strong> - The exact words your ideal clients type into Google. Build your website around what they're actually searching.</div>
+        <div class="skill-item"><strong>Find the Quick Wins on Your Website</strong> - Finds 10+ easy fixes hiding in plain sight and tells you which to tackle first. Most take 5 minutes.</div>
+        <div class="skill-item"><strong>Get Recommended by ChatGPT</strong> - When someone asks AI "best clinic near me" - will it recommend you? This makes sure it does.</div>
+        <div class="skill-item"><strong>Pages That Look Professionally Designed</strong> - Need a service page or treatment showcase? Describe what you want and get a beautiful, mobile-friendly page.</div>
+      </div>
+    </div>
+
+    <!-- SESSION 4 -->
+    <div class="skill-session">
+      <div class="skill-session-header">
+        <div class="skill-session-num">04</div>
+        <div class="skill-session-title">Close More Clients</div>
+      </div>
+      <div class="skill-list">
+        <div class="skill-item"><strong>Walk Into Every Call Prepared</strong> - Ten minutes before a call, get a one-page brief on who you're speaking to. Their business, concerns, your best angle.</div>
+        <div class="skill-item"><strong>Proposals Out While They're Still Excited</strong> - Fresh off a great call? Get a branded proposal out in minutes, not hours.</div>
+        <div class="skill-item"><strong>A Marketing Strategist in Your Back Pocket</strong> - Email copy, subject lines, sales scripts, outreach sequences - on demand.</div>
+        <div class="skill-item"><strong>The Perfect Follow-Up, Every Time</strong> - Post-treatment follow-ups, thank yous, rebooking nudges - in your voice, ready to send.</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -604,7 +650,7 @@ footer p{font-size:.65rem;color:rgba(255,255,255,.15);letter-spacing:.06em;text-
         <li>CRM configured with automated follow-up sequences</li>
         <li>Landing pages designed and connected</li>
         <li>Booking system and response automations live</li>
-        <li>16 free AI skills from our Clinic Skill Library</li>
+        <li>Full AI toolkit - email agent, calendar, carousels, SEO, proposals, and more</li>
         <li>All creatives and copy - yours to keep</li>
         <li>Post-workshop support to make sure everything's running</li>
       </ul>
