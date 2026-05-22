@@ -617,12 +617,10 @@ footer p{font-size:.65rem;color:rgba(255,255,255,.15);letter-spacing:.06em;text-
       <div class="label">See Us In Action</div>
       <div class="section-title white">This is what we do.<br><span>Watch.</span></div>
     </div>
-    <div class="video-wrapper" id="videoWrapper" onclick="playVideo()">
-      <div class="video-thumb" id="videoThumb">
-        <img src="kelly-alicia-awards-web.jpg" alt="Kelly and Alicia presenting">
-        <div class="play-btn"></div>
-      </div>
-      <iframe id="videoFrame" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div class="video-wrapper" style="padding-bottom:56.25%;background:#000;">
+      <video controls playsinline preload="metadata" poster="kelly-alicia-editorial.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+        <source src="cc-presenting-montage.mp4" type="video/mp4">
+      </video>
     </div>
     <p style="text-align:center;font-size:.75rem;color:rgba(255,255,255,.35);margin-top:1rem;">Kelly & Alicia at the Aesthetic Business Masters conference</p>
   </div>
@@ -746,12 +744,6 @@ footer p{font-size:.65rem;color:rgba(255,255,255,.15);letter-spacing:.06em;text-
 </div>
 
 <script>
-function playVideo(){
-  document.getElementById('videoThumb').style.display='none';
-  document.getElementById('videoFrame').src='https://www.youtube.com/embed/Ahw6AlnW4os?autoplay=1';
-  document.getElementById('videoWrapper').style.cursor='default';
-  document.getElementById('videoWrapper').onclick=null;
-}
 function toggleFaq(btn){
   const a=btn.nextElementSibling;
   const isOpen=btn.classList.contains('open');
