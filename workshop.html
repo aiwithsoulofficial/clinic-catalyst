@@ -67,8 +67,9 @@ body{font-family:'Open Sans',sans-serif;background:var(--hero-dark);color:var(--
 .hero{min-height:100vh;display:flex;align-items:center;padding-top:64px;}
 .hero .inner{text-align:center;padding:4rem 0;}
 .hero-bg{position:absolute;inset:0;z-index:0;}
-.hero-bg video{width:100%;height:100%;object-fit:cover;object-position:center top;opacity:.18;filter:saturate(0.4);}
-@media(max-width:768px){.hero-bg video{opacity:.14;object-position:center 20%;}}
+.hero-bg video{width:100%;height:100%;object-fit:cover;object-position:center top;opacity:.55;filter:saturate(0.7);}
+.hero-bg-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,rgba(10,42,40,.45) 0%,rgba(10,42,40,.7) 40%,rgba(10,42,40,.75) 60%,rgba(10,42,40,.5) 100%);}
+@media(max-width:768px){.hero-bg video{opacity:.5;object-position:center 20%;}}
 
 /* CLINIC TYPES STRIP */
 .clinic-strip{display:flex;gap:0;overflow:hidden;}
@@ -332,7 +333,7 @@ footer p{font-size:.65rem;color:rgba(255,255,255,.15);letter-spacing:.06em;text-
 
 <!-- HERO -->
 <section class="hero section-dark">
-  <div class="hero-bg"><video autoplay muted loop playsinline preload="auto" poster="cc-img-reception.jpg"><source src="cc-presenting-montage.mp4" type="video/mp4"></video></div>
+  <div class="hero-bg"><video autoplay muted loop playsinline preload="auto" poster="cc-img-reception.jpg"><source src="cc-presenting-montage.mp4" type="video/mp4"></video><div class="hero-bg-overlay"></div></div>
   <div class="dot-net"></div>
   <div class="glow glow-tl"></div>
   <div class="glow glow-br"></div>
