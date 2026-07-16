@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>2-Day Clinic Build - Clinic Catalyst | Melbourne July 2026</title>
-<meta name="description" content="2 days. Your ads built. Your systems running. Walk out with everything live. Melbourne CBD, 7-9 July 2026. $2,500 + GST.">
+<meta name="description" content="2 days. Your ads built. Your systems running. Walk out with everything live. Melbourne CBD, 7-8 July 2026. $2,500 + GST.">
 <meta property="og:title" content="2-Day Clinic Build - Clinic Catalyst">
 <meta property="og:description" content="2 days with us. Walk out with your ads running and your systems live. Melbourne CBD, July 2026.">
 <meta property="og:type" content="website">
@@ -32,6 +32,45 @@
   --gold:#D4A853;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
+
+/* === GHL CONTAINER OVERRIDES === */
+/* Kill all GHL width constraints */
+#section-content,
+.section-content,
+#section_content,
+.container-width,
+.hl_page-creator--content,
+.hl_page-creator--row,
+.hl_page-creator--col,
+[class*="container"],
+[class*="hl_page"],
+[class*="section-content"],
+[id*="section"],
+.row,
+.col-lg-12,
+.col-md-12,
+.col-sm-12{
+  max-width:100% !important;
+  width:100% !important;
+  padding-left:0 !important;
+  padding-right:0 !important;
+  margin-left:0 !important;
+  margin-right:0 !important;
+  overflow:visible !important;
+}
+
+/* Force full-width sections */
+.hero,.section-dark,.section-dark-alt,.section-light,.section-white,.date-banner,.img-banner,.photo-split,.video-section,.mobile-cta,footer,.nav{
+  width:100vw !important;
+  max-width:100vw !important;
+  margin-left:calc(-50vw + 50%) !important;
+  position:relative;
+  left:0;
+}
+
+/* Reset body/html for GHL */
+html,body{width:100% !important;max-width:100% !important;overflow-x:hidden !important;}
+
 html{scroll-behavior:smooth;background:#000;scroll-padding-top:70px;}
 body{font-family:'Open Sans',sans-serif;background:var(--hero-dark);color:var(--white);overflow-x:hidden;max-width:100%;}
 
@@ -214,6 +253,14 @@ footer p{font-size:.65rem;color:rgba(255,255,255,.15);letter-spacing:.06em;text-
 
 /* RESPONSIVE - MOBILE */
 @media(max-width:768px){
+  /* GHL mobile overrides */
+  [class*="container"],[class*="hl_page"],[class*="section-content"],[id*="section"],.row,[class*="col-"]{
+    padding-left:0 !important;padding-right:0 !important;max-width:100% !important;width:100% !important;
+  }
+  .hero,.section-dark,.section-dark-alt,.section-light,.section-white,.date-banner,.img-banner,.photo-split,.video-section,.mobile-cta,footer,.nav{
+    width:100vw !important;max-width:100vw !important;margin-left:calc(-50vw + 50%) !important;
+  }
+
   /* Layout */
   .nav{padding:0 1rem;height:56px;}
   .nav-logo{font-size:1rem;}
@@ -330,22 +377,22 @@ footer p{font-size:.65rem;color:rgba(255,255,255,.15);letter-spacing:.06em;text-
 <!-- NAV -->
 <nav class="nav">
   <div class="nav-logo">CLINIC<span>CATALYST</span></div>
-  <a href="#book" class="nav-cta">Secure Your Spot</a>
+  <a href="https://link.fastpaydirect.com/payment-link/6a1e848203b17c94f571411f" target="_blank" class="nav-cta">Secure Your Spot</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero section-dark">
-  <div class="hero-bg"><video autoplay muted loop playsinline preload="auto" poster="cc-img-reception.jpg"><source src="cc-presenting-montage.mp4" type="video/mp4"></video><div class="hero-bg-overlay"></div></div>
+  <div class="hero-bg"><video autoplay muted loop playsinline preload="auto" poster="https://assets.cdn.filesafe.space/nrnTN07xakan82JmlsuO/media/6a1503e660ad4b0619369321.jpg"><source src="https://assets.cdn.filesafe.space/nrnTN07xakan82JmlsuO/media/6a15054ad2747625ad891d10.mp4" type="video/mp4"></video><div class="hero-bg-overlay"></div></div>
   <div class="dot-net"></div>
   <div class="glow glow-tl"></div>
   <div class="glow glow-br"></div>
   <div class="inner">
     <div class="hero-badge">Melbourne &middot; July 2026 &middot; Limited Spots</div>
-    <h1>Too big to DIY.<br>Not ready for an agency.<br><em>This is for you.</em></h1>
+    <h1>Stop figuring it out alone.<br>Come build it with us.<br><em>In two days.</em></h1>
     <p class="hero-sub">You know you can't keep doing it all yourself. But you're not at the point where handing everything to an agency makes sense either. So come spend two days with us. We'll teach you how to set up your own ads, systems, automations, and social media strategy - and you'll leave with it all running.</p>
     <div class="hero-meta">
       <div class="hero-meta-item">
-        <div class="hero-meta-val">7 - 9 July</div>
+        <div class="hero-meta-val">7 - 8 July</div>
         <div class="hero-meta-label">Melbourne CBD</div>
       </div>
       <div class="hero-meta-divider"></div>
@@ -359,26 +406,16 @@ footer p{font-size:.65rem;color:rgba(255,255,255,.15);letter-spacing:.06em;text-
         <div class="hero-meta-label">+ GST</div>
       </div>
     </div>
-    <a href="#book" class="btn-primary">Secure Your Spot - $500 Deposit</a>
+    <a href="https://link.fastpaydirect.com/payment-link/6a1e848203b17c94f571411f" target="_blank" class="btn-primary">Secure Your Spot - $500 Deposit</a>
     <p class="hero-deposit">$500 deposit secures your seat. Balance due before the event.</p>
   </div>
 </section>
 
 <!-- DATE BANNER -->
 <div class="date-banner">
-  <p>Melbourne CBD &middot; 7 - 9 July 2026 &middot; Venue details sent on booking</p>
+  <p>Melbourne CBD &middot; 7 - 8 July 2026 &middot; Venue details sent on booking</p>
 </div>
 
-<!-- CLINIC TYPES STRIP -->
-<div class="clinic-strip">
-  <div class="clinic-strip-item"><img src="cc-img-aesthetics.jpg" alt="Aesthetics clinic" loading="lazy"><div class="clinic-strip-overlay"></div><div class="clinic-strip-label">Aesthetics</div></div>
-  <div class="clinic-strip-item"><img src="cc-img-dental.jpg" alt="Dental clinic" loading="lazy"><div class="clinic-strip-overlay"></div><div class="clinic-strip-label">Dental</div></div>
-  <div class="clinic-strip-item"><img src="cc-img-physio.jpg" alt="Physiotherapy clinic" loading="lazy"><div class="clinic-strip-overlay"></div><div class="clinic-strip-label">Physio</div></div>
-  <div class="clinic-strip-item"><img src="cc-img-medical.jpg" alt="Medical clinic" loading="lazy"><div class="clinic-strip-overlay"></div><div class="clinic-strip-label">Medical</div></div>
-  <div class="clinic-strip-item"><img src="cc-img-psychology.jpg" alt="Psychology practice" loading="lazy"><div class="clinic-strip-overlay"></div><div class="clinic-strip-label">Psychology</div></div>
-  <div class="clinic-strip-item"><img src="cc-img-vet.jpg" alt="Veterinary clinic" loading="lazy"><div class="clinic-strip-overlay"></div><div class="clinic-strip-label">Veterinary</div></div>
-  <div class="clinic-strip-item"><img src="cc-img-optometry.jpg" alt="Optometry practice" loading="lazy"><div class="clinic-strip-overlay"></div><div class="clinic-strip-label">Optometry</div></div>
-</div>
 
 <!-- WHO THIS IS FOR -->
 <section class="section-light">
@@ -403,10 +440,16 @@ footer p{font-size:.65rem;color:rgba(255,255,255,.15);letter-spacing:.06em;text-
   </div>
 </section>
 
+<!-- NETWORKING BANNER -->
+<div class="img-banner">
+  <img src="https://assets.cdn.filesafe.space/nrnTN07xakan82JmlsuO/media/6a15006360ad4b0619364d23.jpg" alt="Kelly and Alicia networking at the Aesthetic Business Masters Melbourne" loading="lazy" style="object-position:center 30%;">
+  <div class="img-banner-overlay" style="background:linear-gradient(to bottom,var(--off-white) 0%,rgba(10,42,40,.3) 50%,var(--hero-dark) 100%);"></div>
+</div>
+
 <!-- KELLY + ALICIA PHOTO SPLIT -->
 <div class="photo-split">
   <div class="photo-split-img">
-    <img src="kelly-alicia-dinner.jpg" alt="Kelly and Alicia at the Aesthetic Business Awards" loading="lazy" style="object-position:center top;">
+    <img src="https://assets.cdn.filesafe.space/nrnTN07xakan82JmlsuO/media/6a150063d2747625ad88b76b.jpg" alt="Kelly Wotherspoon and Alicia Hagen at the Aesthetic Business Masters Sydney" loading="lazy" style="object-position:center top;">
   </div>
   <div class="photo-split-text" style="background:var(--hero-dark);">
     <div class="label">Meet Your Guides</div>
@@ -486,10 +529,10 @@ footer p{font-size:.65rem;color:rgba(255,255,255,.15);letter-spacing:.06em;text-
   </div>
 </section>
 
-<!-- IMAGE BANNER - RECEPTION -->
-<div class="img-banner">
-  <img src="cc-img-reception.jpg" alt="Clinic reception" loading="lazy">
-  <div class="img-banner-overlay" style="background:linear-gradient(to bottom,var(--hero-dark) 0%,rgba(10,42,40,.4) 50%,var(--dark-section) 100%);"></div>
+<!-- IMAGE BANNER - WIDE ROOM SHOT -->
+<div class="img-banner awards-banner">
+  <img src="https://assets.cdn.filesafe.space/nrnTN07xakan82JmlsuO/media/6a1503e660ad4b0619369321.jpg" alt="Kelly and Alicia speaking on stage at Aesthetic Business Masters Melbourne" loading="lazy" style="object-position:center 10%;">
+  <div class="img-banner-overlay" style="background:linear-gradient(to bottom,var(--hero-dark) 0%,rgba(10,42,40,.25) 50%,var(--dark-section) 100%);"></div>
 </div>
 
 <!-- WHAT YOU WALK AWAY WITH -->
@@ -620,8 +663,8 @@ footer p{font-size:.65rem;color:rgba(255,255,255,.15);letter-spacing:.06em;text-
       <div class="section-title white">This is what we do.<br><span>Watch.</span></div>
     </div>
     <div class="video-wrapper" style="padding-bottom:56.25%;background:#000;">
-      <video controls playsinline preload="metadata" poster="cc-video-thumb.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
-        <source src="cc-presenting-montage.mp4" type="video/mp4">
+      <video controls playsinline preload="metadata" poster="https://assets.cdn.filesafe.space/nrnTN07xakan82JmlsuO/media/6a1503e5d2747625ad88ff5a.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;">
+        <source src="https://assets.cdn.filesafe.space/nrnTN07xakan82JmlsuO/media/6a1500630397b3655e6a6205.mp4" type="video/mp4">
       </video>
     </div>
     <p style="text-align:center;font-size:.75rem;color:rgba(255,255,255,.35);margin-top:1rem;">Kelly & Alicia presenting at the Spiritual Leaders Business Conference</p>
@@ -630,7 +673,7 @@ footer p{font-size:.65rem;color:rgba(255,255,255,.15);letter-spacing:.06em;text-
 
 <!-- CALLER IMAGE BANNER -->
 <div class="img-banner">
-  <img src="alicia-presenting.jpg" alt="Alicia Hagen presenting on stage" loading="lazy" style="object-position:center 25%;">
+  <img src="https://assets.cdn.filesafe.space/nrnTN07xakan82JmlsuO/media/6a150063e05851175c85e7cb.jpg" alt="Kelly and Alicia at the Aesthetic Business Masters Melbourne" loading="lazy" style="object-position:center 40%;">
   <div class="img-banner-overlay" style="background:linear-gradient(to bottom,var(--hero-dark) 0%,rgba(10,42,40,.3) 50%,var(--hero-dark) 100%);"></div>
 </div>
 
@@ -655,7 +698,7 @@ footer p{font-size:.65rem;color:rgba(255,255,255,.15);letter-spacing:.06em;text-
         <li>All creatives and copy - yours to keep</li>
         <li>Post-workshop support to make sure everything's running</li>
       </ul>
-      <a href="#book" class="btn-primary">Secure Your Spot - $500 Deposit</a>
+      <a href="https://link.fastpaydirect.com/payment-link/6a1e848203b17c94f571411f" target="_blank" class="btn-primary">Secure Your Spot - $500 Deposit</a>
       <p class="invest-deposit">$500 deposit locks in your seat. Balance of $2,250 + GST due before the event.<br>Spots are limited to ensure everyone gets hands-on attention.</p>
     </div>
   </div>
@@ -671,16 +714,16 @@ footer p{font-size:.65rem;color:rgba(255,255,255,.15);letter-spacing:.06em;text-
     <p class="body-text-light">Together, we handle both sides: <strong>getting the leads and making sure they book.</strong></p>
   </div>
   <div class="photo-split-img">
-    <img src="kelly-alicia-headshot.jpg" alt="Kelly Wotherspoon and Alicia Hagen - Clinic Catalyst" loading="lazy" style="object-position:center top;background:var(--dark-section);">
+    <img src="https://assets.cdn.filesafe.space/nrnTN07xakan82JmlsuO/media/6a150063d2747625ad88b76b.jpg" alt="Kelly Wotherspoon and Alicia Hagen - Clinic Catalyst" loading="lazy" style="object-position:center top;background:var(--dark-section);">
   </div>
 </div>
 
 <!-- AWARDS PHOTO BANNER -->
 <div class="img-banner awards-banner" style="background:var(--dark-section);">
-  <img src="kelly-alicia-awards-banner.jpg" alt="Kelly and Alicia at the Aesthetic Business Awards" loading="lazy" style="object-position:center 30%;">
+  <img src="https://assets.cdn.filesafe.space/nrnTN07xakan82JmlsuO/media/6a1503e5d2747625ad88ff5a.jpg" alt="Kelly and Alicia at Aesthetic Business Masters Melbourne" loading="lazy" style="object-position:center 40%;">
   <div class="img-banner-overlay" style="background:linear-gradient(to bottom,var(--dark-section) 0%,rgba(10,42,40,.2) 30%,rgba(10,42,40,.2) 70%,var(--white) 100%);"></div>
   <div style="position:absolute;bottom:1.5rem;left:0;right:0;text-align:center;z-index:2;">
-    <p style="font-family:'Montserrat',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--teal-bright);">Aesthetic Business Awards 2026</p>
+    <p style="font-family:'Montserrat',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--teal-bright);">Aesthetic Business Masters Conference</p>
   </div>
 </div>
 
@@ -730,8 +773,8 @@ footer p{font-size:.65rem;color:rgba(255,255,255,.15);letter-spacing:.06em;text-
     <div class="label">Secure Your Spot</div>
     <h2>Stop losing leads.<br>Start filling your clinic.<br><span>Build it all in 2 days.</span></h2>
     <p>Leave a $500 deposit to lock in your seat. We'll send your preparation checklist and venue details straight away.</p>
-    <a href="#DEPOSIT_LINK_PLACEHOLDER" class="btn-primary">Secure Your Spot - $500 Deposit</a>
-    <p class="final-safety">Melbourne CBD &middot; 7 - 9 July 2026 &middot; Limited spots available</p>
+    <a href="https://link.fastpaydirect.com/payment-link/6a1e848203b17c94f571411f" class="btn-primary">Secure Your Spot - $500 Deposit</a>
+    <p class="final-safety">Melbourne CBD &middot; 7 - 8 July 2026 &middot; Limited spots available</p>
     <div class="brand-bar"></div>
   </div>
 </section>
@@ -742,7 +785,7 @@ footer p{font-size:.65rem;color:rgba(255,255,255,.15);letter-spacing:.06em;text-
 
 <!-- MOBILE CTA BAR -->
 <div class="mobile-cta" id="mobileCta" style="display:none;">
-  <a href="#book" class="btn-primary">Secure Your Spot - $500 Deposit</a>
+  <a href="https://link.fastpaydirect.com/payment-link/6a1e848203b17c94f571411f" target="_blank" class="btn-primary">Secure Your Spot - $500 Deposit</a>
 </div>
 
 <script>
